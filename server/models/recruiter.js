@@ -44,7 +44,7 @@ const recruiterSchema = new Schema({
         type: String,
     },
     contact: {
-        type: String,
+        type: String, 
     },
     jobsOffered : [{type : Schema.Types.ObjectId, ref : 'jobOpening'}]
 },

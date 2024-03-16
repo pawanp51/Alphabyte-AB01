@@ -1,10 +1,11 @@
-import express from 'express';
-import {signup, login,google} from '../controllers/auth.js';
+import express from "express";
+import { signup, login, google } from "../controllers/auth.js";
+import { createSlots } from "../controllers/interviewSlotController.js";
 
 const router = express.Router();
 
-router.post('/signup',signup);
-router.post('/login',login);
-router.post('/google',google);
+router.post("/signup", signup);
+router.post("/login", login);
+router.post("/google", google);
 
 export default router;

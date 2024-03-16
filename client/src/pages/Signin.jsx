@@ -47,7 +47,7 @@ function SignInFormDemo() {
       console.log(res);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.role);
-      if(role==="candidate"){
+      if(localStorage.getItem('role')==="candidate"){
         navigateTo('/edit-candidate')
       }
       else{

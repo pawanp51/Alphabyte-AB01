@@ -12,6 +12,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Option from "../components/Option";
+import { useSelector } from "react-redux";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { imageDb } from "@/firebase/firebaseConfig";
+import {v4} from 'uuid'
 
 export function cn(...inputs) {
   return twMerge(clsx(...inputs));
@@ -22,50 +26,70 @@ function RecruiterEdit() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [image, setImage] = useState('')
-  const [companyName, setCompanyName] = useState('') 
-  const [loading, setLoading] = useState(false)
+  const [companyPosition, setCompanyPosition] = useState('')
+  const [company, setCompany] = useState('')
+  const [about, setAbout] = useState('')
+  const [contact, setContact] = useState('')
 
-  let errorMessage = "valid";
+  const [loading, setLoading] = useState(false)
+  const user = useSelector((state)=>state.user)
+  // const userId = user.currentUser.user._id
+  console.log(user)
   
   const navigate = useNavigate()
-  const navigateTo = (path) => {
-    navigate(path);
-  }
 
-
-//   const postData = async () => {
-//     await axios.post(`/auth/signup`, {
-//       username,
-//       email,
-//       password,
-//       role
-//     }).then(() => {
-//         toast.success("sign up succesfully", {
-//             className: 'bg-slate-900 text-white'
-//         });
-//       setLoading(false);
-//       navigateTo('/signin');
-//     }).catch((err) => {
-//       setLoading(false);
-//       toast.error("something went wrong",{
-//         className: 'bg-slate-900 text-white'
-//       });
-//       console.log(err.response);
-//     });
-//   }
-  const submitForm = (e) => {
+  const submitForm = async(e) =>{
     e.preventDefault();
-    setLoading(true);
-    // errorMessage = validateForm(username, email, password, confirmPassword);
-    if (errorMessage !== "valid") {
-      toast.error(errorMessage,{
-        className:'bg-slate-900 text-white'
+    if(firstName==="" || lastName==="" || company==="" || companyPosition==="" || about==="" || contact===""){
+      toast.error("Please fill all the fields",{
+        className: 'bg-slate-900 text-white'
       });
-      setLoading(false);
-      return;
+      return
     }
-    postData();
+    setLoading(true);
+    await axios.post('/recruiter/update-profile', {
+      token:localStorage.getItem('token'),
+      firstName,
+      lastName,
+      image,
+      company,
+      companyPosition,
+      about,
+      contact
+    }).then((res) => {
+      console.log("response",res)
+        toast.success("Profile updated succesfully", {
+            className: 'bg-slate-900 text-white'
+        });
+      setLoading(false);
+      navigate('/edit-recruiter');
+    }).catch((err) => {
+      setLoading(false);
+      toast.error("something went wrong",{
+        className: 'bg-slate-900 text-white'
+      });
+      console.log(err.response);
+    });
   }
+
+  const handleFileUpload = (e) => {
+    const selectedFile = e.target.files[0];
+    if(selectedFile){
+      const imgref = ref(imageDb,`files/${v4()}`)
+      uploadBytes(imgref,selectedFile).then((value)=>{
+        console.log("image uploaded",value)
+        getDownloadURL(value.ref).then((url)=>{
+          console.log("url",url)
+          setImage(url)
+        })
+      })
+    }
+    else{
+      console.log("no file selected")
+    }
+  };
+
+
 
   if(localStorage.getItem('role')===""){
     return(
@@ -87,24 +111,38 @@ function RecruiterEdit() {
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="firstname">First name</Label>
-            <Input id="firstname" placeholder="Tyler" type="text" />
+            <Input id="firstname" value={firstName} onChange={(e)=>setFirstName(e.target.value)} placeholder="Tyler" type="text" />
           </LabelInputContainer>
           <LabelInputContainer>
             <Label htmlFor="lastname">Last name</Label>
-            <Input id="lastname" placeholder="Durden" type="text" />
+            <Input id="lastname" value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder="Durden" type="text" />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Profile Picture</Label>
-          <Input id="email" type="file" />
+          <Label htmlFor="file">Profile Picture</Label>
+          <Input id="file" onChange={handleFileUpload} type="file" />
         </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
-          <Label htmlFor="password">Company Name</Label>
-          {/* <Input id="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="••••••••" type="password" /> */}
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+          <LabelInputContainer>
+            <Label htmlFor="company">Company Name</Label>
+            <Input id="company" value={company} onChange={(e)=>setCompany(e.target.value)} placeholder="Amazon" type="text" />
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="positon">Company position</Label>
+            <Input id="positon" value={companyPosition} onChange={(e)=>setCompanyPosition(e.target.value)} placeholder="SDE" type="text" />
+          </LabelInputContainer>
+        </div>
+        <LabelInputContainer>
+            <Label htmlFor="about">About Yourself</Label>
+            <Input id="about" value={about} onChange={(e)=>setAbout(e.target.value)} placeholder="Hi i am a great guy with positive aura" type="text" />
         </LabelInputContainer>
+        <LabelInputContainer className="mt-4">
+            <Label htmlFor="contact">Contact number</Label>
+            <Input id="contact" value={contact} onChange={(e)=>setContact(e.target.value)} placeholder="7796327571" type="text" />
+          </LabelInputContainer>
 
         {loading?<span>Loading...</span>:<button
-          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+          className="bg-gradient-to-br relative group/btn mt-4 from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           onClick={submitForm}
         >
           Update Profile &rarr;

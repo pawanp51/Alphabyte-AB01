@@ -9,11 +9,16 @@ import { ContainerScroll } from "../components/Container-Scroll-animation"
 import { LampContainer } from "../components/Lamp-header"
 import  SignupFormDemo  from "./Signup"
 import  SignInFormDemo  from "./Signin"
+import Spotlight from "../components/Spotlight"
 
 export const Landingpage = () => {
     return (
         <div className="bg-slate-950 w-full">
             <Navbar />
+            <Spotlight
+                className="-top-40 left-0 md:left-60 md:-top-20"
+                fill="white"
+            />
             <Header />
             
             <div className="flex flex-col items-center overflow-hidden m-0 p-0">

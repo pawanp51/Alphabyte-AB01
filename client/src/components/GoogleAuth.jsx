@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { app } from "../firebase/firebaseConfig";
+import  {app}  from "../firebase/firebaseConfig";
 import axios from "axios";
 import {
     IconBrandGoogle,
@@ -38,7 +38,7 @@ const GoogleAuth = ({role}) => {
                 localStorage.setItem('role', data.role);
                 dispatch(setRole(data.role))
                 localStorage.setItem('token', data.token);
-                if(role==="candidate"){
+                if(localStorage.getItem('role')==='candidate'){
                     navigate('/edit-candidate')
                   }
                   else{

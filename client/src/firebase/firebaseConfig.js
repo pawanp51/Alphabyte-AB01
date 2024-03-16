@@ -1,5 +1,8 @@
-// Import the functions you need from the SDKs you need
+// firebaseConfig.js
+
 import { initializeApp } from "firebase/app";
+import {getStorage} from "firebase/storage"
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "storyard-16cf8.firebaseapp.com",
@@ -10,5 +13,7 @@ const firebaseConfig = {
   measurementId: "G-DTJ1DC52FB"
 };
 
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const imageDb = getStorage(app);
+
+export {imageDb, app}
