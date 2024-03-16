@@ -27,6 +27,7 @@ const signup = async (req, res,next) => {
                 username,
                 email,
                 password: hashedPassword, 
+                role:role
             });
 
             await newCandidate.save()
@@ -41,7 +42,8 @@ const signup = async (req, res,next) => {
             const newRecruiter = new Recruiter({
                 username,
                 email,
-                password: hashedPassword, 
+                password: hashedPassword,
+                role:role 
             });
 
             await newRecruiter.save()
@@ -126,7 +128,7 @@ const google = async (req,res,next) => {
             return;
         }
 
-        if(role!=="candidate" && role!=="recruiter"){
+        if(role!==""){
             const candidate = await Candidate.findOne({email});
             if(candidate){
                 const token = jwt.sign({id:candidate._id},process.env.JWT_SECRET,{expiresIn: '1d'})
@@ -149,7 +151,7 @@ const google = async (req,res,next) => {
             if(candidate){
                 const token = jwt.sign({id:candidate._id},process.env.JWT_SECRET,{expiresIn: '1d'})
                 const {password, ...rest} = candidate._doc;
-                res.json({msg: 'Login successful', token:token, user:rest});
+                res.json({msg: 'Login successful', token:token, user:rest,role:rest.role});
             }
             else{
                 const generatedPassword = email+1234;
@@ -159,12 +161,13 @@ const google = async (req,res,next) => {
                     username: name,
                     email,
                     password: hashedPassword,
-                    profilePicture: googlePhotoUrl
+                    profilePicture: googlePhotoUrl,
+                    role:role
                 });
                 newCandidate.save()
                 const token = jwt.sign({id:newCandidate._id.toString()},process.env.JWT_SECRET,{expiresIn: '1d'})
                 const {password, ...rest} = newCandidate._doc;
-                res.json({msg: 'User added successfully', token:token, user:rest});
+                res.json({msg: 'User added successfully', token:token, user:rest,role:rest.role});
             }
         }
         else{
@@ -173,7 +176,7 @@ const google = async (req,res,next) => {
                 const token = jwt.sign
                 ({id:recruiter._id},process.env.JWT_SECRET,{expiresIn: '1d'})
                 const {password, ...rest} = recruiter._doc;
-                res.json({msg: 'Login successful', token:token, user:rest});
+                res.json({msg: 'Login successful', token:token, user:rest,rest:rest.role});
             }
             else{
                 const generatedPassword = email+1234;
@@ -183,12 +186,13 @@ const google = async (req,res,next) => {
                     username: name,
                     email,
                     password: hashedPassword,
-                    profilePicture: googlePhotoUrl
+                    profilePicture: googlePhotoUrl,
+                    role:role
                 });
                 newRecruiter.save()
                 const token = jwt.sign({id:newRecruiter._id.toString()},process.env.JWT_SECRET,{expiresIn: '1d'})
                 const {password, ...rest} = newRecruiter._doc;
-                res.json({msg: 'User added successfully', token:token, user:rest});
+                res.json({msg: 'User added successfully', token:token, user:rest,role:rest.role});
             }
         }
     }catch(error){
