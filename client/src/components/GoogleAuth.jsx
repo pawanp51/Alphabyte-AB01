@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { app } from "../firebase/firebaseConfig";
+import  {app}  from "../firebase/firebaseConfig";
 import axios from "axios";
 import {
     IconBrandGoogle,

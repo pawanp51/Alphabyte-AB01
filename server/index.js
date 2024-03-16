@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import Auth from './routes/auth.js';
+import Recruiter from './routes/Recruiter.js';
+import Candidate from './routes/Candidate.js';
 
 const app = express();
 app.use(cors());    
@@ -24,6 +26,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', Auth);
+
+app.use('/recruiter', Recruiter);
+app.use('/candidate', Candidate);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port : ${PORT}`);
