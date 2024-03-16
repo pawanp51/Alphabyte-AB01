@@ -10,8 +10,9 @@ const JobOpeningForm = () => {
   const user = useSelector((state) => state.user);
   // console.log(user?.currentUser?.user?._id);
   const creatorId = user?.currentUser?.user?._id;
-
+  console.log(creatorId);
   const [jobData, setJobData] = useState({
+    creator : "",
     role: "",
     location: "",
     companyName: "",
@@ -22,6 +23,7 @@ const JobOpeningForm = () => {
   });
   const handleClear = () => {
     setJobData({
+      creator : "",
       role: "",
       location: "",
       companyName: "",
@@ -37,6 +39,7 @@ const JobOpeningForm = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setJobData({ ...jobData, creator: creatorId });
+    console.log("creator ID", creatorId);
     const response = await axios.post("/job/createJob", jobData);
     console.log(response.data.msg);
     toast.success(`${response.data.msg}`)

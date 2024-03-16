@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 import axios from 'axios';
 //we will have the post props
 const JobOpeningCard = ({job}) => {
+  console.log(job);
   const skills = [
     "Proficiency in Python, Java, or similar programming languages",
     "Experience with cloud platforms such as AWS, Azure, or GCP Strong",
@@ -91,10 +92,10 @@ const JobOpeningCard = ({job}) => {
       <div className="flex flex-col">
         <div>
           <h1 className="text-sky-600 underline  tracking-wide text-2xl font-bold">
-            Full stack developer
+            {job?.role}
           </h1>
-          <p className="mt-1">Google</p>
-          <p className="text-sm">Pune, Maharashtra, India</p>
+          <p className="mt-1">{job.companyName}</p>
+          <p className="text-sm">{job.location}</p>
         </div>
 
         <div className="flex mt-6">
@@ -106,14 +107,17 @@ const JobOpeningCard = ({job}) => {
         <div className="mt-6">
           <p className="font-medium">Skill Requirements</p>
           <div className="text-sm p-3 rounded-xl bg-[#2d2f40] mt-2">
-            <ul className="list-disc pl-4">
+            {/* <ul className="list-disc pl-4">
               {skills.map((skill, index) => (
                 <li className="text-justify" key={index}>
                   {" "}
                   {skill}
                 </li>
               ))}
-            </ul>
+            </ul> */}
+               <p className="text-justify text-sm">
+                {job?.skillReq}
+              </p>
           </div>
         </div>
 
@@ -122,13 +126,7 @@ const JobOpeningCard = ({job}) => {
             <p className="font-medium">Job Description</p>
             <div className="p-3 rounded-xl bg-[#2d2f40] mt-2">
               <p className="text-justify text-sm">
-                As a Senior Software Engineer at XYZ Tech Solutions, you will be
-                responsible for leading the development of scalable web
-                applications using cutting-edge technologies. You will
-                collaborate with cross-functional teams to architect, design,
-                and implement robust software solutions. This role requires
-                expertise in backend development, proficiency in cloud
-                platforms, and strong problem-solving skills.
+                {job?.jobDesc}
               </p>
             </div>
           </div>
@@ -139,13 +137,7 @@ const JobOpeningCard = ({job}) => {
             <p className="font-medium">Comapany Description</p>
             <div className="p-3 rounded-xl bg-[#2d2f40] mt-2">
               <p className="text-justify text-sm">
-                As a Senior Software Engineer at XYZ Tech Solutions, you will be
-                responsible for leading the development of scalable web
-                applications using cutting-edge technologies. You will
-                collaborate with cross-functional teams to architect, design,
-                and implement robust software solutions. This role requires
-                expertise in backend development, proficiency in cloud
-                platforms, and strong problem-solving skills.
+                {job?.companyDesc}
               </p>
             </div>
           </div>
@@ -162,7 +154,7 @@ const JobOpeningCard = ({job}) => {
         </div>
         <div className="flex justify-between items-center mt-4">
           <div className="flex gap-2 tracking-wide font-medium p-2 text-sm rounded-xl rounded-bl-none text-emerald-300/80 text-slate-100">
-            <Users size={20} /> 214 Applicants
+            <Users size={20} /> {job.noOfCandidates} Applicants
           </div>
 
           <Dialog>

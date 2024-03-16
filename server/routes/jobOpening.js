@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/createJob',createJobOpening);
 //only for jobs posted by the recruiter
-router.get('/getJobPosts/:id', getJobPosts);
+router.get('/getJobPosts/:creatorId', getJobPosts);
 
 export default router;
 
