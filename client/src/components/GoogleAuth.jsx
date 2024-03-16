@@ -10,6 +10,7 @@ import { signInFailure, signInStart, signInSuccess } from "../redux/user/userSli
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setRole } from "../redux/roleSlice";
+import { setAuthenticate } from "../redux/isAuthenticated";
 const GoogleAuth = ({role}) => {
     const auth = getAuth(app);
     const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const GoogleAuth = ({role}) => {
                 localStorage.setItem('role', data.role);
                 dispatch(setRole(data.role))
                 localStorage.setItem('token', data.token);
+                dispatch(setAuthenticate(true))
                 if(localStorage.getItem('role')==='candidate'){
                     navigate('/edit-candidate')
                   }
