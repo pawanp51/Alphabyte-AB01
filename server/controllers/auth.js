@@ -176,7 +176,7 @@ const google = async (req,res,next) => {
                 const token = jwt.sign
                 ({id:recruiter._id},process.env.JWT_SECRET,{expiresIn: '1d'})
                 const {password, ...rest} = recruiter._doc;
-                res.json({msg: 'Login successful', token:token, user:rest,rest:rest.role});
+                res.json({msg: 'Login successful', token:token, user:rest,role:rest.role});
             }
             else{
                 const generatedPassword = email+1234;

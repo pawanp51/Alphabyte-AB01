@@ -71,7 +71,7 @@ function SignupFormDemo() {
     postData();
   }
 
-  if(localStorage.getItem('role')===""){
+  if(localStorage.getItem('role')==="" || localStorage.getItem('role')===null)  {
     return(
       <Option />
     )
