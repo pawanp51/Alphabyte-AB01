@@ -1,4 +1,4 @@
-import InterviewSlot from "../models/interviewSlot";
+import interviewSlot from "../models/interviewSlot.js";
 
 export const createSlots = async (req, res) => {
   const {
@@ -48,7 +48,7 @@ export const createSlots = async (req, res) => {
         );
 
         // Create and save the interview slot
-        const interviewSlot = new InterviewSlot({
+        const interviewSlot = new interviewSlot({
           startTime: startTimeForCandidate,
           endTime: endTimeForCandidate,
           candidate: candidates[i],

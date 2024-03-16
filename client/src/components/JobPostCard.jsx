@@ -16,7 +16,7 @@ const JobOpeningCard = () => {
   };
 
   return (
-    <div className="transition-all w-1/2 p-6 bg-[#191b2e] border border-[#2d2f40] text-slate-300 rounded-xl">
+    <div className="transition-all p-6 bg-[#191b2e] border border-[#2d2f40] text-slate-300 rounded-xl">
       <p className="text-sm italic text-end">Posted 1 day ago</p>
       <div className="flex flex-col">
         <div>

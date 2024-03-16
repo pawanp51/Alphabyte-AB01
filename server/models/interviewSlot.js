@@ -7,4 +7,4 @@ const interviewSlotSchema = new Schema({
   candidate: { type: String },
 });
 
-export default mongoose.model("InterviewSlot", interviewSlotSchema);
+export default mongoose.model("interviewSlot", interviewSlotSchema);
