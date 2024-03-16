@@ -19,7 +19,9 @@ export const getJobPosts = async(req, res) => {
   console.log(id);
   try{
     const jobPosts = await jobOpening.find({creator : id});
-    res.status(200).json(jobPosts);
+    res.status(200).json({
+      jobPosts
+    });
   }catch(error){
     res.status(404).json({message : error.message});
   }
