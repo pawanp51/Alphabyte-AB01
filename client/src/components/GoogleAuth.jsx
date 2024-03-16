@@ -38,7 +38,7 @@ const GoogleAuth = ({role}) => {
                 localStorage.setItem('role', data.role);
                 dispatch(setRole(data.role))
                 localStorage.setItem('token', data.token);
-                if(role==="candidate"){
+                if(localStorage.getItem('role')==='candidate'){
                     navigate('/edit-candidate')
                   }
                   else{
