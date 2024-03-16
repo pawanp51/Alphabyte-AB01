@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import Auth from './routes/auth.js';
 import Recruiter from './routes/Recruiter.js';
 import Candidate from './routes/Candidate.js';
+import JobOpening from './routes/jobOpening.js';
 
 const app = express();
 app.use(cors());    
@@ -29,6 +30,7 @@ app.use('/auth', Auth);
 
 app.use('/recruiter', Recruiter);
 app.use('/candidate', Candidate);
+app.use('/job', JobOpening);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port : ${PORT}`);
