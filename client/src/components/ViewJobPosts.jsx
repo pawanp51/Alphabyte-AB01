@@ -13,7 +13,7 @@ const ViewJobPosts = () => {
       const recuiterJobs = response?.data?.jobPosts;
       console.log(recuiterJobs);
     } catch (error) {
-        consolr.log("error");
+        console.log("error");
     }
   };
   useEffect(() => {
@@ -26,7 +26,7 @@ const ViewJobPosts = () => {
             {/* // recruiterJobs.map((job) => (
             //     <JobPostCard key={job._id} job = {job}/>
             // )) */}
-            <JobPostCard/>
+            <JobPostCard />
             <JobPostCard/>
             <JobPostCard/>
             <JobPostCard/>

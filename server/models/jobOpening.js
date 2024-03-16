@@ -34,6 +34,20 @@ const jobSchema = new Schema({
     noOfCandidates : {
         type : Number,
         default : 0,
+    },
+    interviewSchedule : {
+        type : {
+            startDate : String,
+            endDate : String,
+            startTime: String,
+            endTime : String,
+            interval : String,
+            breakDuration : String
+        }
+    },
+    noOfSelCandidates : {
+        type : Number,
+        default : 0,
     }
     },
     {
