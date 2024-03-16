@@ -11,6 +11,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Option from "../components/Option";
+import { useSelector } from "react-redux";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { imageDb } from "@/firebase/firebaseConfig";
+import {v4} from 'uuid'
 
 export function cn(...inputs) {
   return twMerge(clsx(...inputs));
@@ -29,45 +33,65 @@ const CandidateEdit = () => {
 
   let errorMessage = "valid";
   
+  const user = useSelector((state)=>state.user)
   const navigate = useNavigate()
   const navigateTo = (path) => {
     navigate(path);
   }
 
-
-//   const postData = async () => {
-//     await axios.post(`/auth/signup`, {
-//       username,
-//       email,
-//       password,
-//       role
-//     }).then(() => {
-//         toast.success("sign up succesfully", {
-//             className: 'bg-slate-900 text-white'
-//         });
-//       setLoading(false);
-//       navigateTo('/signin');
-//     }).catch((err) => {
-//       setLoading(false);
-//       toast.error("something went wrong",{
-//         className: 'bg-slate-900 text-white'
-//       });
-//       console.log(err.response);
-//     });
-//   }
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    // errorMessage = validateForm(username, email, password, confirmPassword);
-    if (errorMessage !== "valid") {
-      toast.error(errorMessage,{
-        className:'bg-slate-900 text-white'
+
+    if(firstName==="" || lastName==="" || about==="" || contact==="" || skills==="" || experience==="" || education===""){
+      toast.error("Please fill all the fields",{
+        className: 'bg-slate-900 text-white'
       });
-      setLoading(false);
-      return;
+      return
     }
-    postData();
+
+    setLoading(true);
+    await axios.post('/candidate/update-profile', {
+      token:localStorage.getItem('token'),
+      firstName,
+      lastName,
+      image: profilePic,
+      about,
+      contact,
+      skills,
+      experience,
+      education,
+    }).then((res) => {
+      console.log("response",res)
+        toast.success("Profile updated succesfully", {
+            className: 'bg-slate-900 text-white'
+        });
+      setLoading(false);
+      navigate('/edit-candidate');
+    }).catch((err) => {
+      setLoading(false);
+      toast.error("something went wrong",{
+        className: 'bg-slate-900 text-white'
+      });
+      console.log(err.response);
+    });
   }
+
+  const handleFileUpload = (e) => {
+    const selectedFile = e.target.files[0];
+    if(selectedFile){
+      const imgref = ref(imageDb,`files/${v4()}`)
+      uploadBytes(imgref,selectedFile).then((value)=>{
+        console.log("image uploaded",value)
+        getDownloadURL(value.ref).then((url)=>{
+          console.log("url",url)
+          setProfilePic(url)
+        })
+      })
+    }
+    else{
+      console.log("no file selected")
+    }
+  };
 
   if(localStorage.getItem('role')==="" || localStorage.getItem('role')===null){
     return(
@@ -94,7 +118,7 @@ const CandidateEdit = () => {
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Profile Picture</Label>
-          <Input id="email" type="file" />
+          <Input onChange={handleFileUpload} id="email" type="file" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="about">About</Label>

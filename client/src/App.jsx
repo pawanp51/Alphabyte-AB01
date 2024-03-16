@@ -52,41 +52,37 @@ function App() {
         theme="light"
         transition:Bounce
       />
-      <div className="md:min-w-72 md:max-w-72 w-1/5">
+      <div className="md:min-w-72 md:max-w-72 w-full">
         <Sidebar />
       </div>
-      <div className="p-4 w-4/5">
-        <Routes>
-          <Route path="/" element={<Landingpage />} />
-          <Route
-            path="/about"
-            element={
-              <h1 className="text-3xl font-bold text-center text-white">
-                About
-              </h1>
-            }
-          />
+      <div className="p-4 w-full">
+        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-between">
+          <Routes>
+            <Route path="/" element={<Landingpage />} />
+            <Route
+              path="/about"
+              element={
+                <h1 className="text-3xl font-bold text-center text-white">
+                  About
+                </h1>
+              }
+            />
 
-          <Route path="/signup" element={<SignupFormDemo />} />
-          <Route path="/signin" element={<SignInFormDemo />} />
+            <Route path="/signup" element={<SignupFormDemo />} />
+            <Route path="/signin" element={<SignInFormDemo />} />
 
-          <Route
-            path="/edit"
-            element={
-              role === "recruiter" ? <RecruiterEdit /> : <CandidateEdit />
-            }
-          />
-          <Route path="/createJob" element={<CreateJob />} />
-          <Route path="/viewJobPosts" element={<ViewJobPosts />} />
+            <Route path="/createJob" element={<CreateJob />} />
+            <Route path="/viewJobPosts" element={<ViewJobPosts />} />
 
-          <Route path="/edit-recruiter" element={<RecruiterEdit />} />
-          <Route path="/edit-candidate" element={<CandidateEdit />} />
+            <Route path="/edit-recruiter" element={<RecruiterEdit />} />
+            <Route path="/edit-candidate" element={<CandidateEdit />} />
 
-          <Route
-            path="/shortlisted-candidates"
-            element={<ShortlistedCandidates />}
-          />
-        </Routes>
+            <Route
+              path="/shortlisted-candidates"
+              element={<ShortlistedCandidates />}
+            />
+          </Routes>
+        </div>
       </div>
     </div>
   );

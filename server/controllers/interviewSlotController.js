@@ -1,4 +1,5 @@
 import interviewSlot from "../models/interviewSlot.js";
+import InterviewSlot from "../models/interviewSlot.js";
 
 export const createSlots = async (req, res) => {
   const {
@@ -67,7 +68,7 @@ export const createSlots = async (req, res) => {
     }
 
     // Save all interview slots in bulk
-    await InterviewSlot.insertMany(interviewSlots);
+    await interviewSlot.insertMany(interviewSlots);
 
     return interviewSlots;
   } catch (error) {

@@ -26,7 +26,7 @@ const updateProfile = async (req, res) => {
             }
             recruiter.firstName = firstName;
             recruiter.lastName = lastName;
-            recruiter.image = image;
+            recruiter.profilePicture = image;
             recruiter.company = company;
             recruiter.companyPosi = companyPosition;
             recruiter.about = about;
