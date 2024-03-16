@@ -68,6 +68,10 @@ function App() {
           <Route path='/edit' element={role === 'recruiter' ? <RecruiterEdit/> : <CandidateEdit/> } />
           <Route path='/createJob' element={<CreateJob/>}/>
           <Route path='/viewJobPosts' element={<ViewJobPosts/>}/>
+
+          <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
+          <Route path="/edit-candidate" element={<CandidateEdit/>} />
+
         </Routes>
       </div>
     </div>
