@@ -56,7 +56,7 @@ function App() {
         <Sidebar />
       </div>
       <div className="p-4 w-full">
-        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-between">
+        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-center">
           <Routes>
             <Route path="/" element={<Landingpage />} />
             <Route
@@ -74,15 +74,9 @@ function App() {
             <Route path="/createJob" element={<CreateJob />} />
             <Route path="/viewJobPosts" element={<ViewJobPosts />} />
 
-            <Route path="/edit-recruiter" element={<RecruiterEdit />} />
-            <Route path="/edit-candidate" element={<CandidateEdit />} />
-
-            <Route
-              path="/shortlisted-candidates"
-              element={<ShortlistedCandidates />}
-            />
-          </Routes>
-        </div>
+          <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
+          <Route path="/edit-candidate" element={<CandidateEdit/>} />
+        </Routes>
       </div>
     </div>
   );

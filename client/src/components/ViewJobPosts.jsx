@@ -34,7 +34,7 @@ const ViewJobPosts = () => {
   return (
     <div className="p-10 ">
       <div className="flex items-center justify-between mb-10 text-slate-200">
-        <h1 className="text-3xl tracking-wide font-bold">Jobs Posted</h1>
+        <h1 className="text-3xl tracking-wide font-medium">Jobs Posted</h1>
 
         <Dialog>
           <DialogTrigger>
@@ -60,7 +60,6 @@ const ViewJobPosts = () => {
         )}
         
       </div>
-        
     </div>
   );
 };
