@@ -34,12 +34,19 @@ const recruiterSchema = new Schema({
     lastName: {
         type: String,
     },
-    bio: {
+    currentPosi: {
         type: String,
     },
-    needs: {
-        type: [String],
-    }
+    about: {
+        type: String,
+    },
+    company: {
+        type: String,
+    },
+    contact: {
+        type: String,
+    },
+    jobsOffered : [{type : Schema.Types.ObjectId, ref : 'jobOpening'}]
 },
     {
         timestamps: true

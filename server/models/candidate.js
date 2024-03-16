@@ -34,10 +34,22 @@ const candidateSchema = new Schema({
     lastName: {
         type: String,
     },
-    bio: {
+    about: {
         type: String,
     },
+    contact: {
+        type: String,
     },
+    skills: {
+        type: [String],
+    },
+    experience: {
+        type: String,
+    },
+    education: {
+        type: String,
+    },
+},
     {
         timestamps: true
     }
