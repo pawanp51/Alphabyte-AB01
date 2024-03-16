@@ -167,39 +167,46 @@ const JobOpeningCard = ({ job }) => {
 
           <Dialog>
             <DialogTrigger>
-              <DialogContent></DialogContent>
               <div className="p-2 flex gap-2 font-medium tracking-wide text-sm text-sky-600 border border-sky-600 hover:bg-sky-800/10 rounded-xl rounded-br-none">
                 <Timer size={20} />
                 Schedule Interview
               </div>
             </DialogTrigger>
 
-            <DialogContent className="">
+            <DialogContent className="bg-[#2d2f40] text-slate-200">
               <div className="flex flex-col gap-3">
-                <div>
+                <div className="font-medium text-lg mb-4">
                   Dear Recruiter, kindly select viable dates and timings.
                 </div>
-                <div className="flex flex-col gap-1">
-                  <p>Pick Interview Dates</p>
+                <div className=" flex flex-col gap-1">
+                  <p className="font-medium">Pick Interview Dates</p>
                   <DatePicker
                     value={selectedDates}
                     onChange={handleOnChange}
                     range
                     plugins={[<DatePanel position="left" />]}
                     highlightToday
-                    style={{ width: "300px", height: "30px" }}
+                    style={{
+                      width: "300px",
+                      height: "30px",
+                      background: "inherit",
+                      borderRadius: 0,
+                    }}
                   />
                 </div>
                 <div className="flex flex-row gap-5">
                   <div className="">
-                    <p>Enter start time</p>
+                    <p className="font-medium">Enter start time</p>
                     <TimePicker
                       onChange={handleStartTimeChange}
                       value={startTime}
+                      style={{
+                        background: "inherit",
+                      }}
                     />
                   </div>
                   <div className="">
-                    <p>Enter end time</p>
+                    <p className="font-medium">Enter end time</p>
                     <TimePicker
                       onChange={handleEndTimeChange}
                       value={endTime}
@@ -208,44 +215,37 @@ const JobOpeningCard = ({ job }) => {
                 </div>
                 <div className="flex flex-col gap-3">
                   <div className="">
-                    <p>Enter interview duration</p>
+                    <p className="font-medium">Enter interview duration</p>
                     <div className="flex flex-row items-center gap-2">
                       <input
-                        type="text"
-                        style={{
-                          border: "1px solid #ccc",
-                          borderRadius: "4px",
-                          padding: "8px",
-                          width: "52%",
-                        }}
+                        className="bg-inherit border border-gray-400"
+                        type="number"
+                        style={{}}
                         onChange={handleIntervalChange}
                       />
-                      <p>in mins</p>
+                      <p className="text-sm">in mins</p>
                     </div>
                   </div>
                   <div className="">
-                    <p>Enter break duration</p>
+                    <p className="font-medium">Enter break duration</p>
                     <div className="flex flex-row items-center gap-2">
                       <input
-                        type="text"
-                        style={{
-                          border: "1px solid #ccc",
-                          borderRadius: "4px",
-                          padding: "8px",
-                          width: "52%",
-                        }}
+                        type="number"
+                        className="bg-inherit border border-gray-400"
                         onChange={handleBreakIntervalChange}
                       />
-                      <p>in mins</p>
+                      <p className="text-sm">in mins</p>
                     </div>
                   </div>
                 </div>
-                <Button
-                  className="tracking-wider font-medium"
-                  onClick={handleConfirm}
-                >
-                  Confirm and Allot Schedules
-                </Button>
+                <div className="flex">
+                  <Button
+                    className="mt-6 bg-emerald-500 hover:bg-emerald-600"
+                    onClick={handleConfirm}
+                  >
+                    Confirm and Allot Schedules
+                  </Button>
+                </div>
               </div>
             </DialogContent>
           </Dialog>
