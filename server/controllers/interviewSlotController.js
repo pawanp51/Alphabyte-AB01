@@ -1,16 +1,15 @@
 import InterviewSlot from "../models/interviewSlot.js";
 
 export const createSlots = async (req, res) => {
-  const {
-    startDate,
-    endDate,
-    candidates,
-    recruiterStartTime,
-    recruiterEndTime,
-    interviewDuration,
-    breakDuration,
-  } = req.body;
+  let { startDate, endDate, startTime, endTime, interval, breakDuration } =
+    req.body;
 
+  startTime = parseInt(startTime.split(":")[0], 10);
+  endTime = parseInt(endTime.split(":")[0], 10);
+
+  const candidates = ["Rohan", "Ryan", "Pawan", "Taj"];
+
+  console.log(startDate, endDate, startTime, endTime, interval, breakDuration);
   try {
     const interviewSlots = [];
     const currentDate = new Date(startDate);
@@ -21,30 +20,30 @@ export const createSlots = async (req, res) => {
       // Set the start and end time for the current day
       const currentStartTime = new Date(currentDate);
       const currentEndTime = new Date(currentDate);
-      currentStartTime.setHours(recruiterStartTime);
-      currentEndTime.setHours(recruiterEndTime);
+      currentStartTime.setHours(startTime);
+      currentEndTime.setHours(endTime);
 
       const totalAvailableTime =
         (currentEndTime - currentStartTime) / 1000 / 60;
 
-      const totalInterviewTime = interviewDuration + breakDuration;
+      const totalInterviewTime = interval + breakDuration;
 
       const totalInterviewsTime = candidates.length * totalInterviewTime;
 
-      if (totalInterviewsTime > totalAvailableTime) {
-        throw new Error(
-          "Total interview time exceeds available time for the day"
-        );
-      }
+      // if (totalInterviewsTime > totalAvailableTime) {
+      //   throw new Error(
+      //     "Total interview time exceeds available time for the day"
+      //   );
+      // }
 
       const timeInterval = totalInterviewTime;
 
       // Create interview slots for each candidate
       let currentSlotStart = currentStartTime;
-      for (let i = 0; i < applicantIds.length; i++) {
+      for (let i = 0; i < candidates.length; i++) {
         const startTimeForCandidate = new Date(currentSlotStart);
         const endTimeForCandidate = new Date(
-          startTimeForCandidate.getTime() + interviewDuration * 60 * 1000
+          startTimeForCandidate.getTime() + interval * 60 * 1000
         );
 
         // Create and save the interview slot
@@ -69,7 +68,7 @@ export const createSlots = async (req, res) => {
     // Save all interview slots in bulk
     await InterviewSlot.insertMany(interviewSlots);
 
-    return interviewSlots;
+    res.status(200).json(interviewSlots); // Changed status to 200 for success
   } catch (error) {
     console.log(error);
     res.status(409).json({ message: error.message });
