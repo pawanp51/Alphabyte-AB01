@@ -7,8 +7,6 @@ import { GlassmorphismCard } from "../components/Glassmorphism-card"
 import { LayoutGrid } from "../components/LayoutGrid"
 import { ContainerScroll } from "../components/Container-Scroll-animation"
 import { LampContainer } from "../components/Lamp-header"
-import  SignupFormDemo  from "./Signup"
-import  SignInFormDemo  from "./Signin"
 import Spotlight from "../components/Spotlight"
 
 export const Landingpage = () => {
@@ -75,8 +73,6 @@ export const Landingpage = () => {
                     </motion.h1>
                 </LampContainer>
             </div>
-            <SignupFormDemo />
-            <SignInFormDemo/>
             <Footer />
         </div>
         

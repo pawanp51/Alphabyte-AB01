@@ -1,4 +1,4 @@
-import InterviewSlot from "../models/interviewSlot";
+import InterviewSlot from "../models/interviewSlot.js";
 
 export const createSlots = async (req, res) => {
   const {
