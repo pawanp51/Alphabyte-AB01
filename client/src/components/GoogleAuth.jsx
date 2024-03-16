@@ -38,7 +38,12 @@ const GoogleAuth = ({role}) => {
                 localStorage.setItem('role', data.role);
                 dispatch(setRole(data.role))
                 localStorage.setItem('token', data.token);
-                navigate('/edit')
+                if(role==="candidate"){
+                    navigate('/edit-candidate')
+                  }
+                  else{
+                    navigate('/edit-recruiter')
+                  }
             }
         }catch(err){
             dispatch(signInFailure(err.response.data));

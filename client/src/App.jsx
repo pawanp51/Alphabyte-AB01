@@ -62,8 +62,8 @@ function App() {
           <Route path="/signup" element={<SignupFormDemo/>} />
           <Route path="/signin" element={<SignInFormDemo/>} />
           
-          <Route path='/edit' element={role === 'recruiter' ? <RecruiterEdit/> : <CandidateEdit/> } />
-
+          <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
+          <Route path="/edit-candidate" element={<CandidateEdit/>} />
         </Routes>
       </div>
     </div>
