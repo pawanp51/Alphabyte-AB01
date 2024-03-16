@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { app } from "../firebase/firebaseConfig";
+import  {app}  from "../firebase/firebaseConfig";
 import axios from "axios";
 import {
     IconBrandGoogle,
@@ -46,7 +46,7 @@ const GoogleAuth = ({role}) => {
                   }
             }
         }catch(err){
-            dispatch(signInFailure(err.response.data));
+            dispatch(signInFailure(err.response?.data));
             toast.error("Google is not responding", {
                 className: 'bg-slate-900 text-white'
             });

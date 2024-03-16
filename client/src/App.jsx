@@ -11,13 +11,16 @@ import RecruiterEdit from './pages/RecruiterEdit'
 import CandidateEdit from './pages/CandidateEdit'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import CreateJob from './components/CreateJob'
+import ViewJobPosts from './components/ViewJobPosts';
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
 function App() {
   const location = useLocation()
   console.log(location)
-
+  const navigate = useNavigate();
   const role = useSelector(state => state.role)
 
   useEffect(() => {
@@ -62,8 +65,13 @@ function App() {
           <Route path="/signup" element={<SignupFormDemo/>} />
           <Route path="/signin" element={<SignInFormDemo/>} />
           
+          <Route path='/edit' element={role === 'recruiter' ? <RecruiterEdit/> : <CandidateEdit/> } />
+          <Route path='/createJob' element={<CreateJob/>}/>
+          <Route path='/viewJobPosts' element={<ViewJobPosts/>}/>
+
           <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
           <Route path="/edit-candidate" element={<CandidateEdit/>} />
+
         </Routes>
       </div>
     </div>
