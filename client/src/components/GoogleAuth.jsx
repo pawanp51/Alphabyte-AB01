@@ -38,10 +38,15 @@ const GoogleAuth = ({role}) => {
                 localStorage.setItem('role', data.role);
                 dispatch(setRole(data.role))
                 localStorage.setItem('token', data.token);
-                navigate('/edit')
+                if(role==="candidate"){
+                    navigate('/edit-candidate')
+                  }
+                  else{
+                    navigate('/edit-recruiter')
+                  }
             }
         }catch(err){
-            dispatch(signInFailure(err.response.data));
+            dispatch(signInFailure(err.response?.data));
             toast.error("Google is not responding", {
                 className: 'bg-slate-900 text-white'
             });

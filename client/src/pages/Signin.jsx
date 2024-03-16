@@ -47,7 +47,12 @@ function SignInFormDemo() {
       console.log(res);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.role);
-      navigateTo('/edit');
+      if(role==="candidate"){
+        navigateTo('/edit-candidate')
+      }
+      else{
+        navigateTo('/edit-recruiter')
+      }
     } catch (err) {
       dispatch(signInFailure(err.response.data))
       toast.error(error.message,{
