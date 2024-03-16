@@ -69,7 +69,7 @@ function RecruiterEdit() {
 
   if(localStorage.getItem('role')===""){
     return(
-      <Option setRole={setRole} />
+      <Option/>
     )
   }
 

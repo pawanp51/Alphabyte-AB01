@@ -128,7 +128,7 @@ const google = async (req,res,next) => {
             return;
         }
 
-        if(role!==""){
+        if(role===""){
             const candidate = await Candidate.findOne({email});
             if(candidate){
                 const token = jwt.sign({id:candidate._id},process.env.JWT_SECRET,{expiresIn: '1d'})
