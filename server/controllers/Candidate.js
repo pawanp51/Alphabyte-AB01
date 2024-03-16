@@ -1,4 +1,5 @@
 import Candidate from "../models/candidate.js";
+import jwt from 'jsonwebtoken';
 
 const updateProfile = async (req, res) => {
     const {
