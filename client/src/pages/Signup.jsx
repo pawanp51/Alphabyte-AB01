@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 "use client";
-import { Label } from "../components/UI/Label";
-import { Input } from "../components/UI/Input";
+import { Label } from "../components/AceComps/Label";
+import { Input } from "../components/AceComps/Input";
 import axios from "axios";
 
 

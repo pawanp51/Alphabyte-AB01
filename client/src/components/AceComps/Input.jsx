@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
 
 import clsx from "clsx"; // Import the entire clsx module
