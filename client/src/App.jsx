@@ -54,10 +54,10 @@ function App() {
           theme="light"
           transition:Bounce
         />
-      <div className='md:min-w-72 md:max-w-72 w-full'>
+      <div className='md:min-w-72 md:max-w-72 w-1/5'>
          <Sidebar/>
       </div> 
-      <div className="p-4 w-full">
+      <div className="p-4 w-4/5">
         <Routes>
           <Route path="/" element={<Landingpage/>} />
           <Route path="/about" element={<h1 className="text-3xl font-bold text-center text-white">About</h1>} />
@@ -71,7 +71,6 @@ function App() {
 
           <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
           <Route path="/edit-candidate" element={<CandidateEdit/>} />
-
         </Routes>
       </div>
     </div>
