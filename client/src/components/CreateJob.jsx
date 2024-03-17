@@ -20,7 +20,7 @@ const JobOpeningForm = () => {
   const creatorId = user?.currentUser?.user?._id;
   console.log(creatorId);
   const [jobData, setJobData] = useState({
-    creator : "",
+    creator: "",
     role: "",
     location: "",
     companyName: "",
@@ -31,7 +31,7 @@ const JobOpeningForm = () => {
   });
   const handleClear = () => {
     setJobData({
-      creator : "",
+      creator: "",
       role: "",
       location: "",
       companyName: "",

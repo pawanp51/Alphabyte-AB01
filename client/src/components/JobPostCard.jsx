@@ -9,7 +9,7 @@ import "react-clock/dist/Clock.css";
 import { Button } from "./ui/button";
 import axios from "axios";
 //we will have the post props
-const JobOpeningCard = ({job}) => {
+const JobOpeningCard = ({ job }) => {
   console.log(job);
   const skills = [
     "Proficiency in Python, Java, or similar programming languages",
@@ -17,6 +17,7 @@ const JobOpeningCard = ({job}) => {
     "Understanding of software architecture and design principles",
   ];
   const [scheduleData, setScheduleData] = useState({
+    jobId: job?._id,
     startDate: "",
     endDate: "",
     startTime: "",
@@ -70,6 +71,7 @@ const JobOpeningCard = ({job}) => {
 
     // Create confirmData object
     const confirmData = {
+      jobId: job?._id,
       startDate: startDate,
       endDate: endDate,
       startTime: startTime,
@@ -115,9 +117,7 @@ const JobOpeningCard = ({job}) => {
                 </li>
               ))}
             </ul> */}
-               <p className="text-justify text-sm">
-                {job?.skillReq}
-              </p>
+            <p className="text-justify text-sm">{job?.skillReq}</p>
           </div>
         </div>
 
@@ -125,9 +125,7 @@ const JobOpeningCard = ({job}) => {
           <div className="mt-6">
             <p className="font-medium">Job Description</p>
             <div className="p-3 rounded-xl bg-[#2d2f40] mt-2">
-              <p className="text-justify text-sm">
-                {job?.jobDesc}
-              </p>
+              <p className="text-justify text-sm">{job?.jobDesc}</p>
             </div>
           </div>
         )}
@@ -136,9 +134,7 @@ const JobOpeningCard = ({job}) => {
           <div className="mt-6">
             <p className="font-medium">Comapany Description</p>
             <div className="p-3 rounded-xl bg-[#2d2f40] mt-2">
-              <p className="text-justify text-sm">
-                {job?.companyDesc}
-              </p>
+              <p className="text-justify text-sm">{job?.companyDesc}</p>
             </div>
           </div>
         )}
@@ -165,7 +161,7 @@ const JobOpeningCard = ({job}) => {
               </div>
             </DialogTrigger>
 
-            <DialogContent className="bg-[#2d2f40] text-slate-200">
+            <DialogContent className="">
               <div className="flex flex-col gap-3">
                 <div className="font-medium text-lg mb-4">
                   Dear Recruiter, kindly select viable dates and timings.
@@ -181,7 +177,7 @@ const JobOpeningCard = ({job}) => {
                     style={{
                       width: "300px",
                       height: "30px",
-                      background: "inherit",
+
                       borderRadius: 0,
                     }}
                   />
@@ -192,9 +188,7 @@ const JobOpeningCard = ({job}) => {
                     <TimePicker
                       onChange={handleStartTimeChange}
                       value={startTime}
-                      style={{
-                        background: "inherit",
-                      }}
+                      style={{}}
                     />
                   </div>
                   <div className="">
@@ -232,7 +226,7 @@ const JobOpeningCard = ({job}) => {
                 </div>
                 <div className="flex">
                   <Button
-                    className="mt-6 bg-emerald-500 hover:bg-emerald-600"
+                    className="mt-6 bg-indigo-500 hover:bg-indigo-600"
                     onClick={handleConfirm}
                   >
                     Confirm and Allot Schedules
