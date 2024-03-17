@@ -14,6 +14,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CreateJob from './components/CreateJob'
 import ViewJobPosts from './components/ViewJobPosts';
+import AiInterview from './pages/AiInterview/AiInterview'
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
@@ -70,6 +71,9 @@ function App() {
 
           <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
           <Route path="/edit-candidate" element={<CandidateEdit/>} />
+
+          <Route path="/ai-interview" element={<AiInterview/>}/>
+
         </Routes>
       </div>
     </div>

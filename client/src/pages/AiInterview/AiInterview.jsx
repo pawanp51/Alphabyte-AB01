@@ -1,0 +1,158 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Webcam from "react-webcam";
+
+const SpeechToText = () => {
+    const [isRecording, setIsRecording] = useState(false);
+    const [note, setNote] = useState('');
+    const [notesStore, setNotesStore] = useState([]);
+    const [questions, setQuestions] = useState([
+        "What is MERN stack?",
+        "What is MongoDB?",
+    ]);
+    const [index, setIndex] = useState(0);
+    const [timer, setTimer] = useState(10); 
+
+    useEffect(() => {
+        let interval;
+        if (isRecording) {
+            interval = setInterval(() => {
+                setTimer(prevTimer => prevTimer - 1);
+            }, 1000);
+            if(timer === 0){
+                handleStopRecording();
+                handleNextQuestion();
+            }
+        } else {
+            clearInterval(interval);
+            setTimer(10); 
+        }
+
+        return () => clearInterval(interval);
+    }, [isRecording]);
+
+    const handleStartRecording = () => {
+        setIsRecording(true);
+        console.log(index)
+    };
+
+    const handleStopRecording = () => {
+        setIsRecording(false);
+        setNotesStore(prevNotes => [...prevNotes, { question: questions[index], answer: note }]);
+        setNote('');
+        setIndex(prevIndex => prevIndex + 1);
+    };
+
+    const handleNextQuestion = () => {
+        setIndex(prevIndex => prevIndex + 1);
+        setNote('');
+        setTimer(10); 
+    };
+
+    const handleResetTimer = () => {
+        setTimer(10);
+    };
+
+    const handleTimerComplete = () => {
+        handleStopRecording();
+        // handleNextQuestion();
+    };
+
+    useEffect(() => {
+        if (timer === 0) {
+            handleTimerComplete();
+        }
+    }, [timer]);
+
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const microphone = new SpeechRecognition();
+
+    microphone.continuous = true;
+    microphone.interimResults = true;
+    microphone.lang = "en-US";
+
+    const startRecordController = () => {
+        if (isRecording) {
+            microphone.start();
+        } else {
+            microphone.stop();
+            console.log("Stopped microphone on Click");
+        }
+        microphone.onstart = () => {
+          console.log("microphones on");
+        }; 
+    
+        microphone.onresult = (event) => {
+          const recordingResult = Array.from(event.results)
+            .map((result) => result[0])
+            .map((result) => result.transcript)
+            .join("");
+          console.log(recordingResult);
+          setNote(recordingResult);
+          microphone.onerror = (event) => {
+            console.log(event.error);
+          };
+        };
+    };
+
+    const storeNote = () => {
+      setNotesStore([...notesStore, note]);
+      setNote("");
+    };
+
+    const submitAssesment = () => {
+        console.log(questions)
+        console.log(notesStore);
+        axios.post('/ai-interview/check-answer', {
+            token:localStorage.getItem('token'),
+            notesStore
+        }).then()
+    };
+
+    useEffect(() => {
+        startRecordController();
+    }, [isRecording]);
+
+    return (
+        <div>
+            {index===questions.length?(<div className="text-white flex flex-row justify-center mt-2 gap-x-2 items-center">
+                <h1 className='text-xl text-white'>Interview Completed</h1>
+                <button className="text-black w-20 mb-2 h-16 bg-white rounded-md " onClick={submitAssesment}>Submit</button>
+            </div>):(<div className="text-white flex flex-row justify-center mt-2 gap-x-2 items-center">
+                {isRecording ? <span>Recording... Time left: {timer} seconds</span> : <span>Stopped </span>}
+                <button className="text-black w-20 mb-2 h-16 bg-white rounded-md " onClick={handleStartRecording} disabled={isRecording}>Start</button>
+                <button className="text-black w-20 mb-2 h-16 bg-white rounded-md" onClick={handleStopRecording} disabled={!isRecording}>Stop</button>
+                <button className="text-black w-20 mb-2 h-16 bg-white rounded-md " onClick={handleNextQuestion} disabled={index >= questions.length}>Next</button>
+            </div>)}
+            <div className='bg-slate-800/70 backdrop:blur-lg rounded-md absolute w-[95%] left-4 top-2'>
+                {index!==questions.length && <h2>Question</h2>}
+                {isRecording===true?(<p>{questions[index]}</p>):<p>Press start when you are ready for next question</p>}
+            </div>
+            <div>
+                <h2>Question Answer</h2>
+                {notesStore.map((note, idx) => (
+                    <p key={idx}>{note.question}: {note.answer}</p>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+const AiInterview = () => {
+    return (
+        <div className="text-white w-full text-center">
+            <div>Welcome to the AiInterview</div>
+                <div className='relative'>
+                <div className="w-full flex justify-center items-center">
+                    <Webcam />
+                </div>
+                <div>
+                    <SpeechToText />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default AiInterview;
