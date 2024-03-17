@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileHead from "./ProfileHead";
 import About from "./About";
 import Skills from "./Skills";
@@ -6,19 +6,18 @@ import Education from "./Education";
 import axios from "axios";
 
 const ProfileLayout = () => {
+  const [profileData, setProfileData] = useState({});
 
-  const [profileData, setProfileData] = useState({})
-
-  useEffect(()=>{
+  useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.post("/profile",{
-        token: localStorage.getItem("token")
+      const response = await axios.post("/profile", {
+        token: localStorage.getItem("token"),
       });
-      console.log(response.data)
+      console.log(response.data);
       setProfileData(response.data);
-    }
-    fetchData()
-  },[])
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="p-10">

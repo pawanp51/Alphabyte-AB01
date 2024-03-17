@@ -126,7 +126,7 @@ export const createSlots = async (req, res) => {
     // Save all interview slots in bulk
     await InterviewSlot.insertMany(interviewSlots);
 
-    res.status(200).json({slots : interviewSlots}); // Changed status to 200 for success
+    res.status(200).json(interviewSlots); // Changed status to 200 for success
   } catch (error) {
     console.log(error);
     res.status(409).json({ message: error.message });

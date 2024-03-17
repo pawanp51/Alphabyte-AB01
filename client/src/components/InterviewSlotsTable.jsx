@@ -15,11 +15,12 @@ const InterviewSlotsTable = () => {
   const location = useLocation();
 
   const [data, setData] = useState(
-    JSON.parse(localStorage.getItem("interviewSlot"))
+    JSON.parse(localStorage.getItem("interviewSlots"))
   );
+  console.log(data?.response?.data);
   useEffect(() => {
     // console.log(data?.response?.data);
-    setData(JSON.parse(localStorage.getItem("interviewSlot")));
+    setData(JSON.parse(localStorage.getItem("interviewSlots")));
   }, [location]);
 
   return (
@@ -38,7 +39,7 @@ const InterviewSlotsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.response?.data?.slots?.map((data) => (
+          {data?.response?.data?.map((data) => (
             <TableRow>
               <TableCell>{data?.candidate}</TableCell>
               <TableCell>{data?.date}</TableCell>
@@ -49,7 +50,9 @@ const InterviewSlotsTable = () => {
         </TableBody>
       </Table>
 
-      <Button className="mt-6 tracking-wider bg-green-700">Send Confirmation Email</Button>
+      <Button className="mt-6 tracking-wider bg-green-700">
+        Send Confirmation Email
+      </Button>
     </div>
   );
 };
