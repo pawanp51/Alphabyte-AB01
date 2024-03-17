@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
     creator : {
-        type : Schema.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Recruiter'
     },
     role : {

@@ -39,7 +39,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-between">
+    <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-center">
       <ToastContainer
         position="top-right"
         autoClose={5000}
