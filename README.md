@@ -2,6 +2,22 @@
 
 ## Traditional interview processes often involve manual scheduling, multiple email exchanges, and limited visibility during coding assessments, leading to inefficiencies and delays. Our interview platform aims to revolutionize this experience by offering a seamless, efficient, and transparent solution for recruiters and candidates.
 
+## How to set up
+
+git clone https://github.com/tajmalnas/Alphabyte-AB01
+
+in server folder
+```
+npm i
+nodemon
+```
+
+in client folder
+```
+npm i
+npm run dev
+```
+
 ## Description
 Hiretainity is a cutting-edge website solution tailored exclusively for companies aiming to streamline their interview processes. Traditional interview procedures often involve manual scheduling, extensive email exchanges, and limited visibility during coding assessments, leading to inefficiencies and delays in the hiring process and hindering the candidate experience.
 
@@ -62,7 +78,6 @@ These USPs collectively highlight the value proposition of our website named 'Hi
 ![WhatsApp Image 2024-03-17 at 13 24 26_476703f3](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/8ef7f4a5-0147-4b28-acaf-41a97cae34bf)
 ![WhatsApp Image 2024-03-17 at 13 24 26_041bcbe7](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/c854b2fa-f681-45f7-9eb1-7a994ecabdd2)
 ![WhatsApp Image 2024-03-17 at 13 51 48_6e8405dc](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/3c5dcd88-df73-4175-bab1-0a814e1f7509)
-
 
 ## Video Url
 
