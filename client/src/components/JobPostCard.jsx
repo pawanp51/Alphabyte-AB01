@@ -9,8 +9,10 @@ import "react-clock/dist/Clock.css";
 import { Button } from "./ui/button";
 import axios from "axios";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 //we will have the post props
 const JobOpeningCard = ({ job }) => {
+  const navigate = useNavigate();
   console.log(job);
   const skills = [
     "Proficiency in Python, Java, or similar programming languages",
@@ -85,8 +87,9 @@ const JobOpeningCard = ({ job }) => {
     // Do something with confirmData, such as sending it to an API or storing it in state
     // console.log(confirmData);
     const response = await axios.post("/schedule/createSchedule", confirmData);
-    console.log("response: " + response);
-    console.log(response.data.msg);
+    localStorage.setItem("interviewSlots", JSON.stringify({ response }));
+
+    navigate("/interview-slots");
   };
 
   return (

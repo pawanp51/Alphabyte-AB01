@@ -19,6 +19,7 @@ import CodeEditor from "./pages/CodeEditor";
 import AiInterview from "./pages/AiInterview/AiInterview";
 import ExploreAllJobs from "./components/ExploreAllJobs";
 import ProfilePage from "./pages/profile-page/ProfilePage";
+import InterviewSlotsTable from "./components/InterviewSlotsTable";
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
@@ -89,6 +90,7 @@ function App() {
               path="/shortlisted-candidates"
               element={<ShortlistedCandidates />}
             />
+            <Route path="/interview-slots" element={<InterviewSlotsTable />} />
             <Route path="/success" element={<Landingpage />} />
             <Route path="/cancel" element={<Landingpage />} />
 

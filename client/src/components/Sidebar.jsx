@@ -99,7 +99,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">List a Job</span>
+                    <span className="mx-2 font-medium">List a Job</span>
                   </Link>
                 ) : (
                   <Link
@@ -122,9 +122,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">
-                      Explore Jobs
-                    </span>
+                    <span className="mx-2 font-medium">Explore Jobs</span>
                   </Link>
                 )}
                 {getRole === "recruiter" ? (
@@ -148,7 +146,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">Job Posted</span>
+                    <span className="mx-2 font-medium">Job Posted</span>
                   </Link>
                 ) : (
                   <Link
@@ -171,9 +169,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">
-                      My Applications
-                    </span>
+                    <span className="mx-2 font-medium">My Applications</span>
                   </Link>
                 )}
               </div>
@@ -199,9 +195,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">
-                      Schedule Interview
-                    </span>
+                    <span className="mx-2 font-medium">Schedule Interview</span>
                   </a>
                 ) : (
                   <a
@@ -223,9 +217,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">
-                      View Schedules
-                    </span>
+                    <span className="mx-2 font-medium">View Schedules</span>
                   </a>
                 )}
 
@@ -248,7 +240,7 @@ const Sidebar = () => {
                     />
                   </svg>
 
-                  <span className="mx-2 text-sm font-medium">Checklists</span>
+                  <span className="mx-2 font-medium">Checklists</span>
                 </a>
               </div>
 
@@ -272,7 +264,7 @@ const Sidebar = () => {
                     />
                   </svg>
 
-                  <span className="mx-2 text-sm font-medium">Themes</span>
+                  <span className="mx-2 font-medium">Themes</span>
                 </a>
 
                 <a
@@ -298,7 +290,7 @@ const Sidebar = () => {
                       d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
-                  <span className="mx-2 text-sm font-medium">Setting</span>
+                  <span className="mx-2 font-medium">Setting</span>
                 </a>
               </div>
               <div className="space-y-3 ">
@@ -328,7 +320,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">Profile</span>
+                    <span className="mx-2 font-medium">Profile</span>
                   </Link>
                 )}
 
@@ -357,7 +349,7 @@ const Sidebar = () => {
                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-                    <span className="mx-2 text-sm font-medium">Logout</span>
+                    <span className="mx-2 font-medium">Logout</span>
                   </Link>
                 )}
 
@@ -384,7 +376,7 @@ const Sidebar = () => {
                       />
                     </svg>
 
-                    <span className="mx-2 text-sm font-medium">SignUp</span>
+                    <span className="mx-2 font-medium">SignUp</span>
                   </Link>
                 )}
 
@@ -413,7 +405,7 @@ const Sidebar = () => {
                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-                    <span className="mx-2 text-sm font-medium">SignIn</span>
+                    <span className="mx-2 font-medium">SignIn</span>
                   </Link>
                 )}
               </div>
