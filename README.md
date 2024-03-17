@@ -61,6 +61,7 @@ These USPs collectively highlight the value proposition of our website named 'Hi
 ![IMG-20240317-WA0005](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/d22375f8-191c-466f-9e74-346276975e49)
 ![WhatsApp Image 2024-03-17 at 13 24 26_041bcbe7](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/c854b2fa-f681-45f7-9eb1-7a994ecabdd2)
 ![WhatsApp Image 2024-03-17 at 13 24 26_476703f3](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/8ef7f4a5-0147-4b28-acaf-41a97cae34bf)
+![WhatsApp Image 2024-03-17 at 13 51 48_6e8405dc](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/3c5dcd88-df73-4175-bab1-0a814e1f7509)
 
 
 ## Video Url
