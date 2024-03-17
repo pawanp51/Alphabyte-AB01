@@ -68,16 +68,27 @@ These USPs collectively highlight the value proposition of our website named 'Hi
 - AI automates the interview process by assessing the interviewee real time and generates marks of the interview and also provides points to improve for the interviewee.
 
 ## Screenshots
+-Landing Page
 ![Screenshot (107)](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/f5f21c0a-d7e9-4c1b-a90b-1333cb60286f)
 ![Screenshot (108)](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/4dbc4756-8b85-44ff-af89-369b52ae355a)
+-Subscription Model for Recruiters 
 ![Screenshot (109)](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/9be78dd7-b93a-4c4e-ae57-bc0669e6ab1f)
-![IMG-20240317-WA0004](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/06bec64f-a2fe-4bee-960d-c5303882e489)
-![IMG-20240317-WA0002](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/5f3bdd3a-214a-4656-9216-655269152111)
-![IMG-20240317-WA0003](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/0faa4f73-4132-4e8e-8534-2bfb263d4a91)
-![IMG-20240317-WA0005](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/d22375f8-191c-466f-9e74-346276975e49)
-![WhatsApp Image 2024-03-17 at 13 24 26_476703f3](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/8ef7f4a5-0147-4b28-acaf-41a97cae34bf)
-![WhatsApp Image 2024-03-17 at 13 24 26_041bcbe7](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/c854b2fa-f681-45f7-9eb1-7a994ecabdd2)
+####-AI-powered interview for initial shortlisting
 ![WhatsApp Image 2024-03-17 at 13 51 48_6e8405dc](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/3c5dcd88-df73-4175-bab1-0a814e1f7509)
+####-Built-in code editor for use during interviews
+![IMG-20240317-WA0005](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/d22375f8-191c-466f-9e74-346276975e49)
+####-Automated Interview Scheduling for shortlisted candidates within few clicks
+![Screenshot (42)](https://github.com/tajmalnas/Alphabyte-AB01/assets/105663938/5028f0de-c733-48ec-a3a7-c8fb46786311)
+####-Automated time slot Allotement for shortlisted candidates
+![WhatsApp Image 2024-03-17 at 13 24 26_041bcbe7](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/c854b2fa-f681-45f7-9eb1-7a994ecabdd2)
+-Profile Page
+![Profile Page](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/8ef7f4a5-0147-4b28-acaf-41a97cae34bf)
+-Job Feed
+![IMG-20240317-WA0002](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/5f3bdd3a-214a-4656-9216-655269152111)
+-Job Opening creation form for the recruiter
+![IMG-20240317-WA0003](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/0faa4f73-4132-4e8e-8534-2bfb263d4a91)
+
+
 
 ## Video Url
 https://drive.google.com/drive/folders/1qGwwgbfTOr56yDmlSZPwUPXSO7Vahq2w
