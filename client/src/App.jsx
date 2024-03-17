@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import CreateJob from "./components/CreateJob";
 import ViewJobPosts from "./components/ViewJobPosts";
 import ShortlistedCandidates from "./components/ShortlistedCandidates";
+import CodeEditor from "./pages/CodeEditor";
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
@@ -76,8 +77,17 @@ function App() {
 
           <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
           <Route path="/edit-candidate" element={<CandidateEdit/>} />
+          <Route path="/code-editor" element={<CodeEditor />} />
+
+          <Route
+              path="/shortlisted-candidates"
+              element={<ShortlistedCandidates />}
+            />
+          <Route path="/success" element={<Landingpage/>}/>
+          <Route path="/cancel" element={<Landingpage/>}/>
         </Routes>
       </div>
+    </div>
     </div>
   );
 }

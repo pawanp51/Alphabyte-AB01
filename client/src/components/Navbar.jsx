@@ -26,9 +26,9 @@ export const Navbar = () => {
                         </div>
                         <div className="md:flex space-x-8 items-center">
                             <a href="#" className="text-white ml-8">Log in</a>
-                            <a href="#"><button className="bg-transparent font-m bg-white text-gray-800  py-1 px-3  rounded-full">Sign Up
-                
-                            </button></a>
+                            <button className="bg-transparent font-m bg-white text-gray-800  py-1 px-3  rounded-full">Sign Up
+                                
+                            </button>
                         </div>
                         <div>
                             
