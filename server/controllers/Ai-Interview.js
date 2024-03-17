@@ -35,12 +35,7 @@ const checkAnswer = async (req, res) => {
     
             const summary = response.choices[0].message.content;
             console.log(summary);
-            if(summary){
-                return res.json({summary})
-            }
-            else{
-                return res.json({msg:"its okay"})
-            }
+            return res.json({msg: 'profile updated successfully',summary})
         }
         else{
             return res.status(400).json({msg: 'token not found'});
