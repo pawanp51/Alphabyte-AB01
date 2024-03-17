@@ -6,7 +6,7 @@ import Education from "./Education";
 
 const ProfileLayout = () => {
   return (
-    <div className="w-4/5 p-20">
+    <div className="p-10">
       <div className="flex gap-4">
         <div className="w-1/2 gap-4 flex flex-wrap flex-col">
           <ProfileHead />
