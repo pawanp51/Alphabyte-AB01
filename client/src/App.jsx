@@ -20,6 +20,8 @@ import AiInterview from "./pages/AiInterview/AiInterview";
 import ExploreAllJobs from "./components/ExploreAllJobs";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import InterviewSlotsTable from "./components/InterviewSlotsTable";
+import Landing from "./components/CodeEditor/components/Editor-Landing";
+import Meeting from '../src/components/Meeting'
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
@@ -84,8 +86,9 @@ function App() {
 
             <Route path="/ai-interview" element={<AiInterview />} />
 
-            <Route path="/code-editor" element={<CodeEditor />} />
-
+            <Route path="/meeting/:roomId" element={<Meeting />} />
+            <Route path="/code-editor" element={<Landing />} />
+              <Route path="/interview-slot" element={<InterviewSlotsTable/>}/>
             <Route
               path="/shortlisted-candidates"
               element={<ShortlistedCandidates />}

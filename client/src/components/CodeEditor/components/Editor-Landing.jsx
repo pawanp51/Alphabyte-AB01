@@ -82,7 +82,6 @@ const Landing = () => {
     }
   };
 
-
   const handleCompile = async (e) => {
     e.preventDefault();
     const options = {
@@ -110,22 +109,6 @@ const Landing = () => {
       console.error(error);
     }
   };
-
-  // function handleThemeChange(th) {
-  //   const theme = th;
-  //   console.log("theme...", theme);
-
-  //   if (["light", "vs-dark"].includes(theme.value)) {
-  //     setTheme(theme);
-  //   } else {
-  //     defineTheme(theme.value).then((_) => setTheme(theme));
-  //   }
-  // }
-  // useEffect(() => {
-  //   defineTheme("oceanic-next").then((_) =>
-  //     setTheme({ value: "oceanic-next", label: "Oceanic Next" })
-  //   );
-  // }, []);
 
   const showSuccessToast = (msg) => {
     toast.success(msg || 'Compiled Successfully!', {
@@ -163,8 +146,7 @@ const Landing = () => {
         draggable
         pauseOnHover
       />
-
-      <div className="font-bold text-white text-3xl ml-4 mb-6">Built-in Code Editor</div>
+      <div className="font-bold text-white text-3xl ml-4 mb-6 mt-7">Built-in Code Editor</div>
       <div className="flex flex-row">
         <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={onSelectChange}/>

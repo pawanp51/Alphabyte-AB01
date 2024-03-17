@@ -77,6 +77,7 @@ function SignupFormDemo() {
     )
   }
 
+
   // if(localStorage.getItem('role')!==""){
   //   navigateTo('/signin');
   // }
