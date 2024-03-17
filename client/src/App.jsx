@@ -60,7 +60,7 @@ function App() {
         <Sidebar />
       </div>
       <div className="p-4 w-full">
-        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-between">
+        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-center">
           <Routes>
             <Route path="/" element={<Landingpage />} />
             <Route
