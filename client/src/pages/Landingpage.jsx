@@ -8,6 +8,7 @@ import { LayoutGrid } from "../components/LayoutGrid"
 import { ContainerScroll } from "../components/Container-Scroll-animation"
 import { LampContainer } from "../components/Lamp-header"
 import Spotlight from "../components/Spotlight"
+import Subscription from "../components/Subscription/Subscription"
 
 export const Landingpage = () => {
     return (
@@ -73,6 +74,7 @@ export const Landingpage = () => {
                     </motion.h1>
                 </LampContainer>
             </div>
+            <Subscription />
             <Footer />
         </div>
         

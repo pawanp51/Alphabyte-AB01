@@ -151,7 +151,7 @@ const Landing = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col w-full">
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -183,7 +183,7 @@ const Landing = () => {
           />
         </div>
 
-        <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
+        <div className="right-container flex flex-shrink-0 w-[31%] flex-col">
           {/* <OutputWindow outputDetails={outputDetails} /> */}
           <div className="text-gray-400 h-[20vh] w-[48vh] bg-slate-800 p-4 ">{codeOutput ? codeOutput : 'Output Window'}</div>
           
@@ -207,7 +207,7 @@ const Landing = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 export default Landing;

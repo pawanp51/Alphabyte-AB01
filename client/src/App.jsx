@@ -5,16 +5,19 @@ import { Landingpage } from "./pages/Landingpage";
 import SignInFormDemo from "./pages/Signin";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
-import SignupFormDemo from "./pages/Signup";
-import RecruiterEdit from "./pages/RecruiterEdit";
-import CandidateEdit from "./pages/CandidateEdit";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import CreateJob from "./components/CreateJob";
-import ViewJobPosts from "./components/ViewJobPosts";
+import axios from "axios"
+import SignupFormDemo from './pages/Signup'
+import RecruiterEdit from './pages/RecruiterEdit'
+import CandidateEdit from './pages/CandidateEdit'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import CreateJob from './components/CreateJob'
+import ViewJobPosts from './components/ViewJobPosts';
 import ShortlistedCandidates from "./components/ShortlistedCandidates";
+import CodeEditor from "./pages/CodeEditor";
+import AiInterview from './pages/AiInterview/AiInterview'
+
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
@@ -74,16 +77,23 @@ function App() {
             <Route path="/createJob" element={<CreateJob />} />
             <Route path="/viewJobPosts" element={<ViewJobPosts />} />
 
-            <Route path="/edit-recruiter" element={<RecruiterEdit />} />
-            <Route path="/edit-candidate" element={<CandidateEdit />} />
+            <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
+            <Route path="/edit-candidate" element={<CandidateEdit/>} />
+
+            <Route path="/ai-interview" element={<AiInterview/>}/>
+
+
+            <Route path="/code-editor" element={<CodeEditor />} />
 
             <Route
               path="/shortlisted-candidates"
               element={<ShortlistedCandidates />}
             />
-          </Routes>
-        </div>
+            <Route path="/success" element={<Landingpage/>}/>
+            <Route path="/cancel" element={<Landingpage/>}/>
+        </Routes>
       </div>
+    </div>
     </div>
   );
 }
