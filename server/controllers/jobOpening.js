@@ -17,7 +17,7 @@ export const createJobOpening = async (req, res) => {
 
 export const getAllJobPosts = async (req, res) => {
   try {
-    const jobPosts = await jobOpening.find({});
+    const jobPosts = await jobOpening.find({}).sort({ _id: -1 });
     console.log("Job Posts:", jobPosts); // Log jobPosts to verify if any documents are returned
     res.status(200).json({ jobPosts });
   } catch (error) {
@@ -31,7 +31,9 @@ export const getJobPosts = async (req, res) => {
   const creatorId = req.params.creatorId;
   console.log("Creator ID:", creatorId); // Log creatorId to verify it's being correctly retrieved from the URL
   try {
-    const jobPosts = await jobOpening.find({ creator: creatorId });
+    const jobPosts = await jobOpening
+      .find({ creator: creatorId })
+      .sort({ _id: -1 });
     console.log("Job Posts:", jobPosts); // Log jobPosts to verify if any documents are returned
     res.status(200).json({ jobPosts });
   } catch (error) {
