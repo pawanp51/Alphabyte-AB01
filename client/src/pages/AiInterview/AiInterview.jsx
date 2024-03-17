@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Webcam from "react-webcam";
 
-const SpeechToText = () => {
+const SpeechToText = ({setPerformance}) => {
     const [isRecording, setIsRecording] = useState(false);
     const [note, setNote] = useState('');
     const [notesStore, setNotesStore] = useState([]);
@@ -107,7 +107,10 @@ const SpeechToText = () => {
         axios.post('/ai-interview/check-answer', {
             token:localStorage.getItem('token'),
             notesStore
-        }).then()
+        }).then((res)=>{
+            console.log(res.data);
+           setPerformance(res.data.summary); 
+        })
     };
 
     useEffect(() => {
@@ -140,7 +143,11 @@ const SpeechToText = () => {
 }
 
 const AiInterview = () => {
+    const [performance, setPerformance] = useState('');
+    const paragraphs = performance.split('\n\n');
+    console.log(paragraphs);
     return (
+        performance.length==0 ? 
         <div className="text-white w-full text-center">
             <div>Welcome to the AiInterview</div>
                 <div className='relative'>
@@ -148,10 +155,22 @@ const AiInterview = () => {
                     <Webcam />
                 </div>
                 <div>
-                    <SpeechToText />
+                    <SpeechToText setPerformance={setPerformance} />
                 </div>
             </div>
         </div>
+        :
+        <div className="text-white w-full text-center">
+            <div>Welcome to the AiInterview</div>
+                <div className='relative'>
+                <h1 className="text-2xl font-bold">Performance Feedback</h1>
+                <div className="w-full bg-slate-800 flex flex-col justify-center items-center">
+                {paragraphs.map((paragraph, index) => (
+                    <p key={index} className="mb-4 text-left p-2 text-white">{paragraph}</p>
+                ))}
+                </div>
+            </div>
+        </div>            
     )
 }
 
