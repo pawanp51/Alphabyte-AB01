@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
     creator : {
-        type : Schema.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Recruiter'
     },
     role : {
@@ -32,6 +32,20 @@ const jobSchema = new Schema({
         default : Date.now(),
     },
     noOfCandidates : {
+        type : Number,
+        default : 0,
+    },
+    interviewSchedule : {
+        type : {
+            startDate : String,
+            endDate : String,
+            startTime: String,
+            endTime : String,
+            interval : String,
+            breakDuration : String
+        }
+    },
+    noOfSelCandidates : {
         type : Number,
         default : 0,
     }

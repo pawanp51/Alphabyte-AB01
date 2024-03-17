@@ -22,6 +22,7 @@ const updateProfile = async (req, res) => {
             const userId = jwt.verify(token, process.env.JWT_SECRET).id;
             console.log("userId",userId)
             const candidate = await Candidate.findById(userId);
+            console.log("candidate", candidate)
             if (!candidate) {
                 return res.status(400).json({msg: 'user not found'});
             }

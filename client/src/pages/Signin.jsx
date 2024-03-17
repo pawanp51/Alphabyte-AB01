@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 "use client";
+import React, { useState } from "react";
 import { Label } from "../components/AceComps/Label";
 import { Input } from "../components/AceComps/Input";
 import clsx from "clsx"; // Import the entire clsx module
@@ -9,16 +10,15 @@ import {useSelector,useDispatch} from 'react-redux'
 import axios from "axios";
 import { toast } from "react-toastify";
 import {signInStart,signInSuccess,signInFailure} from "../redux/user/userSlice"
-import { useState } from "react";
 import GoogleAuth from "../components/GoogleAuth";
 import { setRole } from "../redux/roleSlice";
+import { setAuthenticate } from "../redux/isAuthenticated";
 
 export function cn(...inputs) {
   return twMerge(clsx(...inputs));
 }
 
 function SignInFormDemo() {
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch();
@@ -47,12 +47,14 @@ function SignInFormDemo() {
       console.log(res);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.role);
+      dispatch(setAuthenticate(true))
       if(localStorage.getItem('role')==="candidate"){
         navigateTo('/edit-candidate')
       }
       else{
         navigateTo('/edit-recruiter')
       }
+      setAuthenticated(true);
     } catch (err) {
       dispatch(signInFailure(err.response.data))
       toast.error(error.message,{

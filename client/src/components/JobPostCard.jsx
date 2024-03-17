@@ -1,30 +1,101 @@
 import { Timer, Users } from "lucide-react";
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-
-const JobOpeningCard = () => {
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePanel from "react-multi-date-picker/plugins/date_panel";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
+import { Button } from "./ui/button";
+import axios from "axios";
+//we will have the post props
+const JobOpeningCard = ({job}) => {
+  console.log(job);
   const skills = [
     "Proficiency in Python, Java, or similar programming languages",
     "Experience with cloud platforms such as AWS, Azure, or GCP Strong",
     "Understanding of software architecture and design principles",
   ];
+  const [scheduleData, setScheduleData] = useState({
+    startDate: "",
+    endDate: "",
+    startTime: "",
+    endTime: "",
+    interviewDuration: "",
+    breakDuration: "",
+  });
 
   const [view, setView] = useState(false);
+  const [selectedDates, setSelectedDates] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [startTime, setStartTime] = useState("12:00");
+  const [endTime, setEndTime] = useState("12:00");
+  const [interval, setInterval] = useState("");
+  const [breakDuration, setBreakDuration] = useState("");
 
+  const handleStartTimeChange = (newTime) => {
+    setStartTime(newTime);
+  };
+  const handleEndTimeChange = (newTime) => {
+    setEndTime(newTime);
+  };
+  const handleOnChange = (dates) => {
+    setSelectedDates(dates);
+  };
+  //console.log(selectedDates.map((date) => date.format("YYYY-MM-DD")));
   const viewMore = () => {
     setView(!view);
   };
 
+  const handleIntervalChange = (e) => {
+    setInterval(e.target.value);
+  };
+  const handleBreakIntervalChange = (e) => {
+    setBreakDuration(e.target.value);
+  };
+  const handleConfirm = async (e) => {
+    e.preventDefault();
+    const startDate = selectedDates[0].format("YYYY-MM-DD");
+    const endDate = selectedDates[1].format("YYYY-MM-DD");
+    // Assuming startTime and endTime are already defined and in the correct format
+    // Assuming interval and breakDuration are also defined
+
+    // Set start and end time
+    setStartTime(startTime);
+    setEndDate(endTime);
+
+    // console.log(interval);
+    // console.log(breakDuration);
+
+    // Create confirmData object
+    const confirmData = {
+      startDate: startDate,
+      endDate: endDate,
+      startTime: startTime,
+      endTime: endTime,
+      interval: interval,
+      breakDuration: breakDuration,
+      // Add other properties as needed
+    };
+
+    // Do something with confirmData, such as sending it to an API or storing it in state
+    // console.log(confirmData);
+    const response = await axios.post("/schedule/createSchedule", confirmData);
+    console.log("response: " + response);
+    console.log(response.data.msg);
+  };
+
   return (
-    <div className="transition-all w-1/2 p-6 bg-[#191b2e] border border-[#2d2f40] text-slate-300 rounded-xl">
+    <div className="transition-all p-6 bg-[#191b2e] border border-[#2d2f40] text-slate-300 rounded-xl">
       <p className="text-sm italic text-end">Posted 1 day ago</p>
       <div className="flex flex-col">
         <div>
           <h1 className="text-sky-600 underline  tracking-wide text-2xl font-bold">
-            Full stack developer
+            {job?.role}
           </h1>
-          <p className="mt-1">Google</p>
-          <p className="text-sm">Pune, Maharashtra, India</p>
+          <p className="mt-1">{job.companyName}</p>
+          <p className="text-sm">{job.location}</p>
         </div>
 
         <div className="flex mt-6">
@@ -36,14 +107,17 @@ const JobOpeningCard = () => {
         <div className="mt-6">
           <p className="font-medium">Skill Requirements</p>
           <div className="text-sm p-3 rounded-xl bg-[#2d2f40] mt-2">
-            <ul className="list-disc pl-4">
+            {/* <ul className="list-disc pl-4">
               {skills.map((skill, index) => (
                 <li className="text-justify" key={index}>
                   {" "}
                   {skill}
                 </li>
               ))}
-            </ul>
+            </ul> */}
+               <p className="text-justify text-sm">
+                {job?.skillReq}
+              </p>
           </div>
         </div>
 
@@ -52,13 +126,7 @@ const JobOpeningCard = () => {
             <p className="font-medium">Job Description</p>
             <div className="p-3 rounded-xl bg-[#2d2f40] mt-2">
               <p className="text-justify text-sm">
-                As a Senior Software Engineer at XYZ Tech Solutions, you will be
-                responsible for leading the development of scalable web
-                applications using cutting-edge technologies. You will
-                collaborate with cross-functional teams to architect, design,
-                and implement robust software solutions. This role requires
-                expertise in backend development, proficiency in cloud
-                platforms, and strong problem-solving skills.
+                {job?.jobDesc}
               </p>
             </div>
           </div>
@@ -69,13 +137,7 @@ const JobOpeningCard = () => {
             <p className="font-medium">Comapany Description</p>
             <div className="p-3 rounded-xl bg-[#2d2f40] mt-2">
               <p className="text-justify text-sm">
-                As a Senior Software Engineer at XYZ Tech Solutions, you will be
-                responsible for leading the development of scalable web
-                applications using cutting-edge technologies. You will
-                collaborate with cross-functional teams to architect, design,
-                and implement robust software solutions. This role requires
-                expertise in backend development, proficiency in cloud
-                platforms, and strong problem-solving skills.
+                {job?.companyDesc}
               </p>
             </div>
           </div>
@@ -92,7 +154,7 @@ const JobOpeningCard = () => {
         </div>
         <div className="flex justify-between items-center mt-4">
           <div className="flex gap-2 tracking-wide font-medium p-2 text-sm rounded-xl rounded-bl-none text-emerald-300/80 text-slate-100">
-            <Users size={20} /> 214 Applicants
+            <Users size={20} /> {job.noOfCandidates} Applicants
           </div>
 
           <Dialog>
@@ -103,7 +165,81 @@ const JobOpeningCard = () => {
               </div>
             </DialogTrigger>
 
-            <DialogContent></DialogContent>
+            <DialogContent className="bg-[#2d2f40] text-slate-200">
+              <div className="flex flex-col gap-3">
+                <div className="font-medium text-lg mb-4">
+                  Dear Recruiter, kindly select viable dates and timings.
+                </div>
+                <div className=" flex flex-col gap-1">
+                  <p className="font-medium">Pick Interview Dates</p>
+                  <DatePicker
+                    value={selectedDates}
+                    onChange={handleOnChange}
+                    range
+                    plugins={[<DatePanel position="left" />]}
+                    highlightToday
+                    style={{
+                      width: "300px",
+                      height: "30px",
+                      background: "inherit",
+                      borderRadius: 0,
+                    }}
+                  />
+                </div>
+                <div className="flex flex-row gap-5">
+                  <div className="">
+                    <p className="font-medium">Enter start time</p>
+                    <TimePicker
+                      onChange={handleStartTimeChange}
+                      value={startTime}
+                      style={{
+                        background: "inherit",
+                      }}
+                    />
+                  </div>
+                  <div className="">
+                    <p className="font-medium">Enter end time</p>
+                    <TimePicker
+                      onChange={handleEndTimeChange}
+                      value={endTime}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <div className="">
+                    <p className="font-medium">Enter interview duration</p>
+                    <div className="flex flex-row items-center gap-2">
+                      <input
+                        className="bg-inherit border border-gray-400"
+                        type="number"
+                        style={{}}
+                        onChange={handleIntervalChange}
+                      />
+                      <p className="text-sm">in mins</p>
+                    </div>
+                  </div>
+                  <div className="">
+                    <p className="font-medium">Enter break duration</p>
+                    <div className="flex flex-row items-center gap-2">
+                      <input
+                        type="number"
+                        className="bg-inherit border border-gray-400"
+                        onChange={handleBreakIntervalChange}
+                      />
+                      <p className="text-sm">in mins</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex">
+                  <Button
+                    className="mt-6 bg-emerald-500 hover:bg-emerald-600"
+                    onClick={handleConfirm}
+                  >
+                    Confirm and Allot Schedules
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
           </Dialog>
         </div>
       </div>
