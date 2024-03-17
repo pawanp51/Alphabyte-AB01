@@ -8,6 +8,7 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { Button } from "./ui/button";
 import axios from "axios";
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
 //we will have the post props
 const JobOpeningCard = ({ job }) => {
@@ -86,14 +87,17 @@ const JobOpeningCard = ({ job }) => {
     // Do something with confirmData, such as sending it to an API or storing it in state
     // console.log(confirmData);
     const response = await axios.post("/schedule/createSchedule", confirmData);
-    localStorage.setItem("interviewSlot", JSON.stringify({ response }));
-    console.log(response.data?.slots);
-    navigate("/interview-slot");
+    localStorage.setItem("interviewSlots", JSON.stringify({ response }));
+
+    navigate("/interview-slots");
   };
 
   return (
     <div className="transition-all p-6 bg-[#191b2e] border border-[#2d2f40] text-slate-300 rounded-xl">
-      <p className="text-sm italic text-end">Posted 1 day ago</p>
+      <p className="text-sm italic text-end">
+        {" "}
+        {moment(job?.createdAt)?.fromNow()}
+      </p>
       <div className="flex flex-col">
         <div>
           <h1 className="text-sky-600 underline  tracking-wide text-2xl font-bold">
@@ -153,7 +157,7 @@ const JobOpeningCard = ({ job }) => {
         </div>
         <div className="flex justify-between items-center mt-4">
           <div className="flex gap-2 tracking-wide font-medium p-2 text-sm rounded-xl rounded-bl-none text-emerald-300/80 text-slate-100">
-            <Users size={20} /> {job.noOfCandidates} Applicants
+            <Users size={20} /> {job?.noOfCandidates?.length || 0} Applicants
           </div>
 
           <Dialog>

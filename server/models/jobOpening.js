@@ -32,10 +32,12 @@ const jobSchema = new Schema(
       type: Date,
       default: Date.now(),
     },
-    noOfCandidates: {
-      type: Number,
-      default: 0,
-    },
+    noOfCandidates: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "noOfCandidatesModel",
+      },
+    ],
     interviewSchedule: {
       type: {
         startDate: String,

@@ -17,6 +17,8 @@ import ViewJobPosts from "./components/ViewJobPosts";
 import ShortlistedCandidates from "./components/ShortlistedCandidates";
 import CodeEditor from "./pages/CodeEditor";
 import AiInterview from "./pages/AiInterview/AiInterview";
+import ExploreAllJobs from "./components/ExploreAllJobs";
+import ProfilePage from "./pages/profile-page/ProfilePage";
 import InterviewSlotsTable from "./components/InterviewSlotsTable";
 import Landing from "./components/CodeEditor/components/Editor-Landing";
 import Meeting from '../src/components/Meeting'
@@ -61,7 +63,7 @@ function App() {
         <Sidebar />
       </div>
       <div className="p-4 w-full">
-        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-between">
+        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-center">
           <Routes>
             <Route path="/" element={<Landingpage />} />
             <Route
@@ -91,8 +93,12 @@ function App() {
               path="/shortlisted-candidates"
               element={<ShortlistedCandidates />}
             />
+            <Route path="/interview-slots" element={<InterviewSlotsTable />} />
             <Route path="/success" element={<Landingpage />} />
             <Route path="/cancel" element={<Landingpage />} />
+
+            <Route path="/exploreAllJobs" element={<ExploreAllJobs />} />
+            <Route path="/profile-page" element={<ProfilePage />} />
           </Routes>
         </div>
       </div>

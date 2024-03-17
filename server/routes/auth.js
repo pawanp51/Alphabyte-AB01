@@ -1,6 +1,5 @@
 import express from "express";
 import { signup, login, google } from "../controllers/auth.js";
-import { createSlots } from "../controllers/interviewSlotController.js";
 
 const router = express.Router();
 
