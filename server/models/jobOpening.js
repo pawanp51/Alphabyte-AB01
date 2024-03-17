@@ -45,6 +45,10 @@ const jobSchema = new Schema({
             breakDuration : String
         }
     },
+    timeSlots : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'InterviewSlot'
+    }],
     noOfSelCandidates : {
         type : Number,
         default : 0,

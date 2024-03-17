@@ -38,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-center">
+    <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-between">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -74,9 +74,15 @@ function App() {
             <Route path="/createJob" element={<CreateJob />} />
             <Route path="/viewJobPosts" element={<ViewJobPosts />} />
 
-          <Route path="/edit-recruiter" element={<RecruiterEdit/>} />
-          <Route path="/edit-candidate" element={<CandidateEdit/>} />
-        </Routes>
+            <Route path="/edit-recruiter" element={<RecruiterEdit />} />
+            <Route path="/edit-candidate" element={<CandidateEdit />} />
+
+            <Route
+              path="/shortlisted-candidates"
+              element={<ShortlistedCandidates />}
+            />
+          </Routes>
+        </div>
       </div>
     </div>
   );
