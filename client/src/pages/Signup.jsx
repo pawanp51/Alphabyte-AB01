@@ -77,10 +77,6 @@ function SignupFormDemo() {
     )
   }
 
-  if(localStorage.getItem('token')!==""){
-    navigate('/profile-page');
-    return;
-  }
 
   // if(localStorage.getItem('role')!==""){
   //   navigateTo('/signin');
