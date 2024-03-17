@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import JobPostCard from "./JobPostCard";
@@ -7,23 +7,29 @@ import { File, Upload } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
 import ExcelToJsonForm from "./ExcelToJsonForm";
+import { useLocation } from "react-router-dom";
 
 const ViewJobPosts = () => {
   const user = useSelector((state) => state.user);
   const creatorId = user?.currentUser?.user?._id;
+  const [recruiterJobs, setRecruiterJobs] = useState([]);
+  // console.log(creatorId);
+  const location = useLocation();
+  // const token = localStorage.getItem('token');
+  // console.log(token);
   const fetchRecruiterPosts = async (creatorId) => {
-    try {
-      const response = await axios.get(`/job/getJobPosts/${creatorId}`);
-      //   console.log(response.data.postedJobs);
-      const recuiterJobs = response?.data?.jobPosts;
-      console.log(recuiterJobs);
-    } catch (error) {
-      console.log("error");
-    }
+    const response = await axios.get(`/job/getJobPosts/${creatorId}`);
+    // console.log(response.data.jobPosts);
+    // const recruiterJobs = response?.data?.jobPosts;
+    // console.log(recruiterJobs);
+    // const {recruiterJobs} = response?.data?.jobPosts;
+    setRecruiterJobs(response?.data?.jobPosts);
+    // console.log(recruiterJobs);
   };
   useEffect(() => {
     fetchRecruiterPosts(creatorId);
-  }, []);
+    // console.log(creatorId);
+  }, [location]);
 
   return (
     <div className="p-10 ">
@@ -44,13 +50,11 @@ const ViewJobPosts = () => {
         </Dialog>
       </div>
       <div className="grid grid-cols-2 gap-10 justify-center item-center">
-        {/* // recruiterJobs.map((job) => (
-            //     <JobPostCard key={job._id} job = {job}/>
-            // )) */}
-        <JobPostCard />
-        <JobPostCard />
-        <JobPostCard />
-        <JobPostCard />{" "}
+        {recruiterJobs.length ? (
+          recruiterJobs.map((job) => <JobPostCard key={job._id} job={job} />)
+        ) : (
+          <div className="">No Jobs Posted</div>
+        )}
       </div>
     </div>
   );
