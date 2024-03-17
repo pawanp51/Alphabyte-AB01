@@ -161,7 +161,7 @@ const JobOpeningCard = ({ job }) => {
               </div>
             </DialogTrigger>
 
-            <DialogContent className="bg-[#2d2f40] text-slate-200">
+            <DialogContent className="">
               <div className="flex flex-col gap-3">
                 <div className="font-medium text-lg mb-4">
                   Dear Recruiter, kindly select viable dates and timings.
@@ -177,7 +177,7 @@ const JobOpeningCard = ({ job }) => {
                     style={{
                       width: "300px",
                       height: "30px",
-                      background: "inherit",
+
                       borderRadius: 0,
                     }}
                   />
@@ -188,9 +188,7 @@ const JobOpeningCard = ({ job }) => {
                     <TimePicker
                       onChange={handleStartTimeChange}
                       value={startTime}
-                      style={{
-                        background: "inherit",
-                      }}
+                      style={{}}
                     />
                   </div>
                   <div className="">
@@ -228,7 +226,7 @@ const JobOpeningCard = ({ job }) => {
                 </div>
                 <div className="flex">
                   <Button
-                    className="mt-6 bg-emerald-500 hover:bg-emerald-600"
+                    className="mt-6 bg-indigo-500 hover:bg-indigo-600"
                     onClick={handleConfirm}
                   >
                     Confirm and Allot Schedules
