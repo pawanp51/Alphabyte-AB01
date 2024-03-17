@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const jobSchema = new Schema(
   {
     creator: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Recruiter",
     },
     role: {
@@ -46,6 +46,12 @@ const jobSchema = new Schema(
         breakDuration: String,
       },
     },
+    timeSlots: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "InterviewSlot",
+      },
+    ],
     noOfSelCandidates: {
       type: Number,
       default: 0,

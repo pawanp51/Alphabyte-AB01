@@ -8,6 +8,7 @@ import { LayoutGrid } from "../components/LayoutGrid"
 import { ContainerScroll } from "../components/Container-Scroll-animation"
 import { LampContainer } from "../components/Lamp-header"
 import Spotlight from "../components/Spotlight"
+import Subscription from "../components/Subscription/Subscription"
 
 export const Landingpage = () => {
     return (
@@ -25,13 +26,11 @@ export const Landingpage = () => {
 
             <div className="flex flex-col justify-center items-center">
                 <div className="max-w-lg">
-                    <div className="text-center text-5xl font-medium tracking-tight text-transparent md:text-6xl max-w-2xl mb-0">
-                        <span className="text-white">Unlike any tool </span><span className="text-white py-4 bg-clip-text">you've used before</span>
+                    <div className="text-center text-5xl font-medium tracking-tight text-transparent md:text-5xl  max-w-2xl mb-0">
+                        <span className="text-white leading-normal">Unleash the Potential </span><span className="text-white py-4 bg-clip-text">of Our Advanced Tools</span>
                     </div>
                     <div className="flex justify-center items-center flex-col">
-                        <p className="text-slate-300 mt-8 text-2xl text-center">Designed to the last pixel and engineered</p>
-                        <p className="text-slate-300 text-2xl text-center">with unforgiving precision, Linear combines</p>
-                        <p className="text-slate-300 text-2xl text-center">UI elegance with world-class performance.</p>
+                        <p className="text-slate-300 mt-8 text-2xl text-center">Modernize Your Hiring with Automated Email Outreach, Intelligent Candidate Selection, and Smooth Interview Coordination</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +51,9 @@ export const Landingpage = () => {
                         {/* <div className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-5xl font-medium tracking-tight text-transparent md:text-7xl">
                             Build lamps <br /> the right way
                         </div> */}
-                        <div className="flex justify-center m-0 p-0">
+                        <div className="flex gap-6 justify-center m-0 p-0">
+                            <GlassmorphismCard />
+                            <GlassmorphismCard />
                             <GlassmorphismCard />
                         </div>
                     </motion.h1>
@@ -73,6 +74,7 @@ export const Landingpage = () => {
                     </motion.h1>
                 </LampContainer>
             </div>
+            <Subscription />
             <Footer />
         </div>
         

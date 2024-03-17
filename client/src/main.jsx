@@ -7,6 +7,7 @@ import { persistor, store } from './redux/store'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import {app} from '../src/firebase/firebaseConfig.js';
+import 'regenerator-runtime/runtime';
 
 console.log(app)
 if (!app) {

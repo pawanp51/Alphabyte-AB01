@@ -6,13 +6,18 @@ import Auth from './routes/auth.js';
 import Recruiter from './routes/Recruiter.js';
 import Candidate from './routes/Candidate.js';
 import JobOpening from './routes/jobOpening.js';
+import AIInterview from './routes/Ai-Interview.js';
 import createSchedule from './routes/schedule.js'
+import candidateJob from './routes/candidateJob.js';
+import Stripe from 'stripe';
+dotenv.config();
+const stripe = Stripe(process.env.SECRET_KEY);
 
 const app = express();
-app.use(cors());    
+app.use(cors({
+    origin : "http://localhost:5173"
+}));    
 app.use(express.json());
-dotenv.config();
-
 
 const PORT = 5000;
 
@@ -33,6 +38,35 @@ app.use('/recruiter', Recruiter);
 app.use('/candidate', Candidate);
 app.use('/job', JobOpening);
 app.use('/schedule', createSchedule);
+app.use('/candidate/job', candidateJob);
+app.post("/checkout", async(req, res) => {
+    try{
+        const session  = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+            line_items:req.body.items.map(item => {
+                return{
+                    price_data: {
+                        currency: "inr",
+                        product_data: {
+                            name: item.name
+                        },
+                        unit_amount: item.price * 100
+                    },
+                    quantity: item.quantity
+                }
+            }),
+            success_url: 'http://localhost:5173/success',
+            cancel_url: 'http://localhost:5173/cancel',
+        });
+        console.log(session);
+        res.json({url : session.url, sessionId: session.id});
+    }catch(error){
+        res.status(500).json({error : error.message});
+    }
+});
+
+app.use('/ai-interview',AIInterview);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port : ${PORT}`);

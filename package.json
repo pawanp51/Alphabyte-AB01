@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@stripe/stripe-js": "^3.0.10",
     "uuid": "^9.0.1"
   }
 }
