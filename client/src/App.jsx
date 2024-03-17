@@ -17,6 +17,7 @@ import ViewJobPosts from './components/ViewJobPosts';
 import ShortlistedCandidates from "./components/ShortlistedCandidates";
 import CodeEditor from "./pages/CodeEditor";
 import AiInterview from './pages/AiInterview/AiInterview'
+import ProfilePage from "./pages/profile-page/ProfilePage";
 
 
 axios.defaults.baseURL = "http://localhost:5000/";
@@ -91,6 +92,8 @@ function App() {
             />
             <Route path="/success" element={<Landingpage/>}/>
             <Route path="/cancel" element={<Landingpage/>}/>
+
+            <Route path="/profile-page" element={<ProfilePage />} />
         </Routes>
       </div>
     </div>
