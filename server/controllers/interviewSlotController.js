@@ -1,15 +1,44 @@
 import InterviewSlot from "../models/interviewSlot.js";
 
 export const createSlots = async (req, res) => {
-  let { startDate, endDate, startTime, endTime, interval, breakDuration } =
-    req.body;
+  let {
+    jobId,
+    startDate,
+    endDate,
+    startTime,
+    endTime,
+    interval,
+    breakDuration,
+  } = req.body;
 
   startTime = parseInt(startTime.split(":")[0], 10);
   endTime = parseInt(endTime.split(":")[0], 10);
 
-  const candidates = ["Rohan", "Ryan", "Pawan", "Taj"];
+  const candidates = [
+    "John Doe",
+    "Jane Smith",
+    "Michael Johnson",
+    "Emily Brown",
+    "William Davis",
+    "Emma Wilson",
+    "James Taylor",
+    "Olivia Martinez",
+    "Alexander Anderson",
+    "Sophia White",
+    "Daniel Thomas",
+    "Charlotte Clark",
+    "Matthew Rodriguez",
+    "Ava Lewis",
+    "Ethan Walker",
+    "Amelia Hall",
+    "David Allen",
+    "Mia Scott",
+    "Joseph Baker",
+    "Grace Carter",
+  ];
 
   console.log(startDate, endDate, startTime, endTime, interval, breakDuration);
+
   try {
     const interviewSlots = [];
     const currentDate = new Date(startDate);
@@ -25,31 +54,60 @@ export const createSlots = async (req, res) => {
 
       const totalAvailableTime =
         (currentEndTime - currentStartTime) / 1000 / 60;
-
       const totalInterviewTime = interval + breakDuration;
-
       const totalInterviewsTime = candidates.length * totalInterviewTime;
-
-      // if (totalInterviewsTime > totalAvailableTime) {
-      //   throw new Error(
-      //     "Total interview time exceeds available time for the day"
-      //   );
-      // }
 
       const timeInterval = totalInterviewTime;
 
       // Create interview slots for each candidate
       let currentSlotStart = currentStartTime;
       for (let i = 0; i < candidates.length; i++) {
-        const startTimeForCandidate = new Date(currentSlotStart);
-        const endTimeForCandidate = new Date(
-          startTimeForCandidate.getTime() + interval * 60 * 1000
+        // Check if the current slot exceeds the end time for the day
+        if (currentSlotStart > currentEndTime) {
+          // No more slots can be scheduled for the day
+          break;
+        }
+
+        const dateFormatted = currentSlotStart.toLocaleDateString("en-US", {
+          weekday: "short",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+
+        const startTimeFormatted = currentSlotStart.toLocaleTimeString(
+          "en-US",
+          {
+            hour12: false,
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        );
+
+        let endTimeForCandidate = new Date(
+          currentSlotStart.getTime() + interval * 60 * 1000
+        );
+
+        // Check if endTimeForCandidate exceeds currentEndTime
+        if (endTimeForCandidate > currentEndTime) {
+          // Adjust endTimeForCandidate to currentEndTime
+          endTimeForCandidate = currentEndTime;
+        }
+
+        const endTimeFormatted = endTimeForCandidate.toLocaleTimeString(
+          "en-US",
+          {
+            hour12: false,
+            hour: "2-digit",
+            minute: "2-digit",
+          }
         );
 
         // Create and save the interview slot
         const interviewSlot = new InterviewSlot({
-          startTime: startTimeForCandidate,
-          endTime: endTimeForCandidate,
+          date: dateFormatted,
+          startTime: startTimeFormatted,
+          endTime: endTimeFormatted,
           candidate: candidates[i],
         });
 

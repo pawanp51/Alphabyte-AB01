@@ -8,6 +8,7 @@ import Candidate from './routes/Candidate.js';
 import JobOpening from './routes/jobOpening.js';
 import AIInterview from './routes/Ai-Interview.js';
 import createSchedule from './routes/schedule.js'
+import candidateJob from './routes/candidateJob.js';
 import Stripe from 'stripe';
 dotenv.config();
 const stripe = Stripe(process.env.SECRET_KEY);
@@ -37,6 +38,7 @@ app.use('/recruiter', Recruiter);
 app.use('/candidate', Candidate);
 app.use('/job', JobOpening);
 app.use('/schedule', createSchedule);
+app.use('/candidate/job', candidateJob);
 app.post("/checkout", async(req, res) => {
     try{
         const session  = await stripe.checkout.sessions.create({
