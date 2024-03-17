@@ -1,4 +1,5 @@
 import jobOpening from "../models/jobOpening.js";
+import noOfCandidatesModel from "../models/noOfCandidates.js";
 
 export const createJobOpening = async (req, res) => {
   const post = req.body;
@@ -36,5 +37,32 @@ export const getJobPosts = async (req, res) => {
   } catch (error) {
     console.error("Error fetching job posts:", error); // Log any errors that occur during the database query
     res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const addCandidate = async (req, res) => {
+  const { postId, userId } = req?.body;
+  console.log({ postId, userId });
+
+  try {
+    const newCandidate = new noOfCandidatesModel({
+      post: postId,
+      user: userId,
+    });
+    await newCandidate.save();
+
+    console.log("newCandidate", newCandidate);
+
+    const updatedJobPost = await jobOpening.findByIdAndUpdate(
+      postId,
+      { $push: { noOfCandidates: newCandidate._id } },
+      { new: true }
+    );
+    res.status(201).json(updatedJobPost);
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({
+      message: "Failed to add candidate",
+    });
   }
 };
