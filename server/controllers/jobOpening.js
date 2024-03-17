@@ -53,6 +53,9 @@ export const addCandidate = async (req, res) => {
 
     console.log("newCandidate", newCandidate);
 
+    const updatedJobPost1 = await jobOpening.findById(postId);
+    console.log(updatedJobPost1);
+
     const updatedJobPost = await jobOpening.findByIdAndUpdate(
       postId,
       { $push: { noOfCandidates: newCandidate._id } },
