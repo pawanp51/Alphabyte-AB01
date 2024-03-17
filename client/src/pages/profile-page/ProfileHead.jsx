@@ -1,10 +1,9 @@
-import React from "react";
-
+/* eslint-disable react/prop-types */
 import coverPhoto from "../../assets/Cover-image.png";
 import markPic from "../../assets/background-image.png";
 import { Button } from "../../components/ui/button";
 
-const ProfileHead = () => {
+const ProfileHead = ({profile}) => {
   return (
     <div className="bg-[#191b2e] text-slate-100 rounded-xl">
       {/* header and photo */}
@@ -18,13 +17,13 @@ const ProfileHead = () => {
         </div>
         <img
           className="bg-[#191b2e] p-1 rounded-md object-cover -bottom-10 left-5 absolute w-20 h-20"
-          src={markPic}
+          src={profile?.profilePicture || markPic}
           alt="profile pic"
         />
       </div>
       <div className="px-4 pb-4">
-        <p className="mt-12 text-xl font-semibold">Mark Zukerberg</p>
-        <p>CEO of facebook</p>
+        <p className="mt-12 text-xl font-semibold">{profile.firstName+" "+profile.lastName || "Mark Zukerberg"}</p>
+        <p>{"SDE at "+profile?.company}</p>
         <div className="flex gap-4 mt-4">
           <Button className=" border border-gray-50 hover:bg-gray-100 text-slate-50">
             Change photo

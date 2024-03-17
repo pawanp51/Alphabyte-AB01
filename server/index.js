@@ -10,6 +10,8 @@ import AIInterview from './routes/Ai-Interview.js';
 import createSchedule from './routes/schedule.js'
 import candidateJob from './routes/candidateJob.js';
 import Stripe from 'stripe';
+import Profile from './routes/Profile.js';
+
 dotenv.config();
 const stripe = Stripe(process.env.SECRET_KEY);
 
@@ -65,6 +67,8 @@ app.post("/checkout", async(req, res) => {
         res.status(500).json({error : error.message});
     }
 });
+
+app.use('/profile', Profile);
 
 app.use('/ai-interview',AIInterview);
 
