@@ -73,16 +73,16 @@ These USPs collectively highlight the value proposition of our website named 'Hi
 ![Screenshot (108)](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/4dbc4756-8b85-44ff-af89-369b52ae355a)
 -Subscription Model for Recruiters 
 ![Screenshot (109)](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/9be78dd7-b93a-4c4e-ae57-bc0669e6ab1f)
-####-AI-powered interview for initial shortlisting
+-AI-powered interview for initial shortlisting
 ![WhatsApp Image 2024-03-17 at 13 51 48_6e8405dc](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/3c5dcd88-df73-4175-bab1-0a814e1f7509)
-####-Built-in code editor for use during interviews
+-Built-in code editor for use during interviews
 ![IMG-20240317-WA0005](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/d22375f8-191c-466f-9e74-346276975e49)
-####-Automated Interview Scheduling for shortlisted candidates within few clicks
-![Screenshot (42)](https://github.com/tajmalnas/Alphabyte-AB01/assets/105663938/5028f0de-c733-48ec-a3a7-c8fb46786311)
-####-Automated time slot Allotement for shortlisted candidates
+-Automated Interview Scheduling for shortlisted candidates within few clicks
+![Profile Page](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/8ef7f4a5-0147-4b28-acaf-41a97cae34bf)
+-Automated time slot Allotement for shortlisted candidates
 ![WhatsApp Image 2024-03-17 at 13 24 26_041bcbe7](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/c854b2fa-f681-45f7-9eb1-7a994ecabdd2)
 -Profile Page
-![Profile Page](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/8ef7f4a5-0147-4b28-acaf-41a97cae34bf)
+![Screenshot (42)](https://github.com/tajmalnas/Alphabyte-AB01/assets/105663938/5028f0de-c733-48ec-a3a7-c8fb46786311)
 -Job Feed
 ![IMG-20240317-WA0002](https://github.com/tajmalnas/Alphabyte-AB01/assets/106643308/5f3bdd3a-214a-4656-9216-655269152111)
 -Job Opening creation form for the recruiter
