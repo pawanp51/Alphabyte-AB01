@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import useKeyPress from "../hooks/useKeyPress";
 import Footer from "./Footer";
 import OutputWindow from "./OutputWindow";
-import CustomInput from "./CustomInput";
+//import CustomInput from "./CustomInput";
 import OutputDetails from "./OutputDetails";
 // import ThemeDropdown from "./ThemeDropdown";
 import LanguagesDropdown from "./LanguagesDropdown";
@@ -48,7 +48,7 @@ console.log(binarySearch(arr, target));
 
 const Landing = () => {
   const [code, setCode] = useState(javascriptDefault);
-  const [customInput, setCustomInput] = useState("");
+  //const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState("");
   const [processing, setProcessing] = useState(null);
   const [codeOutput, setOutput] = useState('')
@@ -185,13 +185,13 @@ const Landing = () => {
 
         <div className="right-container flex flex-shrink-0 w-[31%] flex-col">
           {/* <OutputWindow outputDetails={outputDetails} /> */}
-          <div className="text-gray-400 h-[20vh] w-[48vh] bg-slate-800 p-4 ">{codeOutput ? codeOutput : 'Output Window'}</div>
+          <div className="text-gray-400 h-[60vh] w-[48vh] bg-slate-800 p-4 ">{codeOutput ? codeOutput : 'Output Window'}</div>
           
           <div className="flex flex-col items-end">
-            <CustomInput
+            {/* <CustomInput
               customInput={customInput}
               setCustomInput={setCustomInput}
-            />
+            /> */}
             <button
               onClick={handleCompile}
               disabled={!code}

@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
-import Image from "../assets/background-image.png";
+import Image from "../assets/code-editor.png";
 
 export const ContainerScroll = () => {
   const containerRef = useRef(null);
