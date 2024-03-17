@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import JobPostCard from "./JobPostCard";
 import { Button } from "./ui/button";
-import { File, Upload } from "lucide-react";
+import { File } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
 import ExcelToJsonForm from "./ExcelToJsonForm";
