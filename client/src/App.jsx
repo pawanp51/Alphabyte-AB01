@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import CreateJob from "./components/CreateJob";
 import ViewJobPosts from "./components/ViewJobPosts";
 import ShortlistedCandidates from "./components/ShortlistedCandidates";
+import InterviewSlotsTable from "./components/InterviewSlotsTable";
 
 axios.defaults.baseURL = "http://localhost:5000/";
 
@@ -56,7 +57,7 @@ function App() {
         <Sidebar />
       </div>
       <div className="p-4 w-full">
-        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-center">
+        <div className="min-h-screen bg-[#030519] flex md:flex-row flex-col md:justify-between">
           <Routes>
             <Route path="/" element={<Landingpage />} />
             <Route
@@ -81,6 +82,8 @@ function App() {
               path="/shortlisted-candidates"
               element={<ShortlistedCandidates />}
             />
+
+            <Route path="/interview-slot" element={<InterviewSlotsTable />} />
           </Routes>
         </div>
       </div>

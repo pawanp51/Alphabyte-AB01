@@ -48,6 +48,7 @@ const JobOpeningForm = () => {
     const response = await axios.post("/job/createJob", jobData);
     console.log(response.data.msg);
     toast.success(`${response.data.msg}`);
+    handleClear();
     navigate("/viewJobPosts");
   };
   return (
@@ -135,7 +136,7 @@ const JobOpeningForm = () => {
           <div className="flex justify-end">
             <Button
               type="submit"
-              className="px-4 h-9 font-medium bg-indigo-500 hover:bg-indigo-600 hover:scale-105 mt-4"
+              className="px-4 h-9 font-medium bg-indigo-500 hover:bg-indigo-600 mt-4"
             >
               Create Job Opening
             </Button>

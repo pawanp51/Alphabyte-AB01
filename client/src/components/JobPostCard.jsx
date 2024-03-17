@@ -8,8 +8,10 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { Button } from "./ui/button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 //we will have the post props
 const JobOpeningCard = ({ job }) => {
+  const navigate = useNavigate();
   const skills = [
     "Proficiency in Python, Java, or similar programming languages",
     "Experience with cloud platforms such as AWS, Azure, or GCP Strong",
@@ -81,8 +83,8 @@ const JobOpeningCard = ({ job }) => {
     // Do something with confirmData, such as sending it to an API or storing it in state
     // console.log(confirmData);
     const response = await axios.post("/schedule/createSchedule", confirmData);
-    console.log("response: " + response);
-    console.log(response.data.msg);
+    localStorage.setItem("interviewSlots", JSON.stringify({ response }));
+    navigate("/interview-slot");
   };
 
   return (
@@ -161,7 +163,7 @@ const JobOpeningCard = ({ job }) => {
           </div>
         </div>
         <div className="flex justify-between items-center mt-4">
-          <div className="flex gap-2 tracking-wide font-medium p-2 text-sm rounded-xl rounded-bl-none text-emerald-300/80 text-slate-100">
+          <div className="flex gap-2 tracking-wide font-medium p-2 text-sm rounded-xl rounded-bl-none text-indigo-300/80 text-slate-100">
             <Users size={20} /> 214 Applicants
           </div>
 
@@ -173,7 +175,7 @@ const JobOpeningCard = ({ job }) => {
               </div>
             </DialogTrigger>
 
-            <DialogContent className="bg-[#2d2f40] text-slate-200">
+            <DialogContent className="">
               <div className="flex flex-col gap-3">
                 <div className="font-medium text-lg mb-4">
                   Dear Recruiter, kindly select viable dates and timings.
@@ -189,7 +191,7 @@ const JobOpeningCard = ({ job }) => {
                     style={{
                       width: "300px",
                       height: "30px",
-                      background: "inherit",
+
                       borderRadius: 0,
                     }}
                   />
@@ -200,9 +202,7 @@ const JobOpeningCard = ({ job }) => {
                     <TimePicker
                       onChange={handleStartTimeChange}
                       value={startTime}
-                      style={{
-                        background: "inherit",
-                      }}
+                      style={{}}
                     />
                   </div>
                   <div className="">
@@ -240,7 +240,7 @@ const JobOpeningCard = ({ job }) => {
                 </div>
                 <div className="flex">
                   <Button
-                    className="mt-6 bg-emerald-500 hover:bg-emerald-600"
+                    className="mt-6 bg-indigo-500 hover:bg-indigo-600"
                     onClick={handleConfirm}
                   >
                     Confirm and Allot Schedules
