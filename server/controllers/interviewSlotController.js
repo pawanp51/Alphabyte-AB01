@@ -1,8 +1,15 @@
 import InterviewSlot from "../models/interviewSlot.js";
 
 export const createSlots = async (req, res) => {
-  let { startDate, endDate, startTime, endTime, interval, breakDuration } =
-    req.body;
+  let {
+    jobId,
+    startDate,
+    endDate,
+    startTime,
+    endTime,
+    interval,
+    breakDuration,
+  } = req.body;
 
   startTime = parseInt(startTime.split(":")[0], 10);
   endTime = parseInt(endTime.split(":")[0], 10);
