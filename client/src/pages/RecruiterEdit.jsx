@@ -26,7 +26,7 @@ function RecruiterEdit() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [image, setImage] = useState('')
-  const [companyPosition, setCompanyPosition] = useState('')
+  const [currentPosi, setCurrentPosi] = useState('')
   const [company, setCompany] = useState('')
   const [about, setAbout] = useState('')
   const [contact, setContact] = useState('')
@@ -40,7 +40,7 @@ function RecruiterEdit() {
 
   const submitForm = async(e) =>{
     e.preventDefault();
-    if(firstName==="" || lastName==="" || company==="" || companyPosition==="" || about==="" || contact===""){
+    if(firstName==="" || lastName==="" || company==="" || currentPosi==="" || about==="" || contact===""){
       toast.error("Please fill all the fields",{
         className: 'bg-slate-900 text-white'
       });
@@ -53,7 +53,7 @@ function RecruiterEdit() {
       lastName,
       image,
       company,
-      companyPosition,
+      currentPosi,
       about,
       contact
     }).then((res) => {
@@ -129,7 +129,7 @@ function RecruiterEdit() {
           </LabelInputContainer>
           <LabelInputContainer>
             <Label htmlFor="positon">Company position</Label>
-            <Input id="positon" value={companyPosition} onChange={(e)=>setCompanyPosition(e.target.value)} placeholder="SDE" type="text" />
+            <Input id="positon" value={currentPosi} onChange={(e)=>setCurrentPosi(e.target.value)} placeholder="SDE" type="text" />
           </LabelInputContainer>
         </div>
         <LabelInputContainer>

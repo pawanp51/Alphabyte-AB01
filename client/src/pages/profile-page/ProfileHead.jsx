@@ -23,7 +23,7 @@ const ProfileHead = ({profile}) => {
       </div>
       <div className="px-4 pb-4">
         <p className="mt-12 text-xl font-semibold">{profile.firstName+" "+profile.lastName || "Mark Zukerberg"}</p>
-        <p>{"SDE at "+profile?.company}</p>
+        <p>{profile.role === 'recruiter' ? `${profile?.currentPosi} at ${profile?.company}` : `${profile?.experience}`}</p>
         <div className="flex gap-4 mt-4">
           <Button className=" border border-gray-50 hover:bg-gray-100 text-slate-50">
             Change photo
