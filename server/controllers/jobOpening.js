@@ -18,7 +18,7 @@ export const createJobOpening = async (req, res) => {
 export const getAllJobPosts = async (req, res) => {
   try {
     const jobPosts = await jobOpening.find({}).sort({ _id: -1 });
-    console.log("Job Posts:", jobPosts); // Log jobPosts to verify if any documents are returned
+    // console.log("Job Posts:", jobPosts); // Log jobPosts to verify if any documents are returned
     res.status(200).json({ jobPosts });
   } catch (error) {
     console.error("Error fetching job posts:", error); // Log any errors that occur during the database query
@@ -34,7 +34,7 @@ export const getJobPosts = async (req, res) => {
     const jobPosts = await jobOpening
       .find({ creator: creatorId })
       .sort({ _id: -1 });
-    console.log("Job Posts:", jobPosts); // Log jobPosts to verify if any documents are returned
+    // console.log("Job Posts:", jobPosts); // Log jobPosts to verify if any documents are returned
     res.status(200).json({ jobPosts });
   } catch (error) {
     console.error("Error fetching job posts:", error); // Log any errors that occur during the database query
@@ -43,20 +43,23 @@ export const getJobPosts = async (req, res) => {
 };
 
 export const addCandidate = async (req, res) => {
-  const { postId, userId } = req?.body;
-  console.log({ postId, userId });
+  const { postId, userId, companyName, jobLocation, jobDesc, role } = req?.body;
+  // console.log({ postId, userId });
 
   try {
     const newCandidate = new noOfCandidatesModel({
       post: postId,
       user: userId,
+      companyName,
+      jobLocation,
+      jobDesc,
+      role,
     });
     await newCandidate.save();
 
     console.log("newCandidate", newCandidate);
 
-    const updatedJobPost1 = await jobOpening.findById(postId);
-    console.log(updatedJobPost1);
+    // const updatedJobPost1 = await jobOpening.findById(postId);
 
     const updatedJobPost = await jobOpening.findByIdAndUpdate(
       postId,

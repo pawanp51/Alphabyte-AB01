@@ -14,9 +14,20 @@ const ExploreAllJobs = ({ job }) => {
   };
 
   const postId = job?._id;
+  const companyName = job?.companyName;
+  const jobLocation = job?.location;
+  const jobDesc = job?.jobDesc;
+  const role = job?.role;
 
   const addCandidate = async () => {
-    const response = await axios.post("/job/addCandidate", { postId, userId });
+    const response = await axios.post("/job/addCandidate", {
+      postId,
+      userId,
+      companyName,
+      jobLocation,
+      jobDesc,
+      role,
+    });
     console.log(response);
   };
 
@@ -28,10 +39,10 @@ const ExploreAllJobs = ({ job }) => {
       <div className="flex flex-col">
         <div>
           <h1 className="text-sky-600 underline  tracking-wide text-2xl font-bold">
-            {job?.role}
+            {role}
           </h1>
-          <p className="mt-1">{job?.companyName}</p>
-          <p className="text-sm">{job?.location}</p>
+          <p className="mt-1">{companyName}</p>
+          <p className="text-sm">{jobLocation}</p>
         </div>
 
         <div className="flex mt-6">
@@ -51,7 +62,7 @@ const ExploreAllJobs = ({ job }) => {
           <div className="mt-6">
             <p className="font-medium">Job Description</p>
             <div className="p-3 rounded-xl bg-[#2d2f40] mt-2">
-              <p className="text-justify text-sm">{job?.jobDesc}</p>
+              <p className="text-justify text-sm">{jobDesc}</p>
             </div>
           </div>
         )}
