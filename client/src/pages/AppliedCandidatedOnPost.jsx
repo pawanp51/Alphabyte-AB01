@@ -9,9 +9,10 @@ import {
   } from "../components/ui/table";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AppliedCandidatedOnPost = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [appliedCandidates, setAppliedCandidates] = useState([])
 
@@ -58,7 +59,9 @@ const AppliedCandidatedOnPost = () => {
                     <TableCell>{candidate?.candidate?.contact}</TableCell>
                     <TableCell>{candidate?.marks}</TableCell>
                     <TableCell>
-                        <button className="bg-sky-600  text-slate-200 p-2 rounded-md">Take Interview</button>
+                        <button className="bg-sky-600  text-slate-200 p-2 rounded-md"
+                            onClick={()=>navigate(`/meeting/${candidate?.candidate?._id}`)}
+                        >Take Interview</button>
                     </TableCell>
                     <TableCell>
                         <button className="bg-blue-500  text-slate-200 p-2 rounded-md">View Profile</button>
