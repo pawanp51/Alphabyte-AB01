@@ -10,7 +10,9 @@ const getProfile = async (req, res) => {
   try {
     if (token) {
       const userId = jwt.verify(token, process.env.JWT_SECRET).id;
+      console.log(userId);
       const candidate = await Candidate.findById(userId);
+      console.log(candidate);
       if (candidate) {
         return res.json(candidate);
       }
