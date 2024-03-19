@@ -83,7 +83,7 @@ const login = async (req, res, next) => {
                     expiresIn: '1d'
                 })
                 console.log("token",token)
-                res.json({msg: 'Login successful', token:token,role:rest.role});
+                res.json({msg: 'Login successful', token:token,user:rest,role:rest.role});
                 return;
             }
 
@@ -110,7 +110,7 @@ const login = async (req, res, next) => {
                     expiresIn: '1d'
                 })
                 console.log("token",token)
-                res.json({msg: 'Login successful', token:token,role:rest.role});
+                res.json({msg: 'Login successful', token:token, user : rest, role:rest.role});
                 return;
             }
     }

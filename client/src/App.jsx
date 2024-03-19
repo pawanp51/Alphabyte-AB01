@@ -22,7 +22,7 @@ import ProfilePage from "./pages/profile-page/ProfilePage";
 import InterviewSlotsTable from "./components/InterviewSlotsTable";
 import Landing from "./components/CodeEditor/components/Editor-Landing";
 import Meeting from '../src/components/Meeting'
-
+import TemplatePage from '../src/pages/template-page'
 axios.defaults.baseURL = "http://localhost:5000/";
 
 function App() {
@@ -99,6 +99,7 @@ function App() {
 
             <Route path="/exploreAllJobs" element={<ExploreAllJobs />} />
             <Route path="/profile-page" element={<ProfilePage />} />
+            <Route path="/templatepage" element={<TemplatePage />} />
           </Routes>
         </div>
       </div>
