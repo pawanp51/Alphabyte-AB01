@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
@@ -58,7 +58,7 @@ const MyAppliedJobs = () => {
               <TableCell>{data?.jobLocation}</TableCell>
               <TableCell>
                 <button
-                  onClick={() => navigate("/ai-interview")}
+                  onClick={() => navigate(`/ai-interview/${data?.post}`)}
                   className="bg-indigo-800 hover:bg-indigo-900 px-4 h-9 rounded-md"
                 >
                   Ai interview

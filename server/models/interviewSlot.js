@@ -6,6 +6,7 @@ const interviewSlotSchema = new Schema({
   startTime: { type: String },
   endTime: { type: String },
   candidate: { type: String },
+  email:{type:String},
 });
 
 export default mongoose.model("InterviewSlot", interviewSlotSchema);

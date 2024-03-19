@@ -9,35 +9,22 @@ export const createSlots = async (req, res) => {
     endTime,
     interval,
     breakDuration,
+    candidate,
   } = req.body;
 
   startTime = parseInt(startTime.split(":")[0], 10);
   endTime = parseInt(endTime.split(":")[0], 10);
 
-  const candidates = [
-    "John Doe",
-    "Jane Smith",
-    "Michael Johnson",
-    "Emily Brown",
-    "William Davis",
-    "Emma Wilson",
-    "James Taylor",
-    "Olivia Martinez",
-    "Alexander Anderson",
-    "Sophia White",
-    "Daniel Thomas",
-    "Charlotte Clark",
-    "Matthew Rodriguez",
-    "Ava Lewis",
-    "Ethan Walker",
-    "Amelia Hall",
-    "David Allen",
-    "Mia Scott",
-    "Joseph Baker",
-    "Grace Carter",
-  ];
+  let candidates = [];
 
-  console.log(startDate, endDate, startTime, endTime, interval, breakDuration);
+  for(let i=0; i<candidate.length; i++){
+    candidates.push({
+      name:candidate[i]?.candidate?.firstName.toString(),
+      email:candidate[i]?.candidate?.email.toString(),
+    });
+  }
+
+  console.log(startDate, endDate, startTime, endTime, interval, breakDuration,candidates);
 
   try {
     const interviewSlots = [];
@@ -108,7 +95,8 @@ export const createSlots = async (req, res) => {
           date: dateFormatted,
           startTime: startTimeFormatted,
           endTime: endTimeFormatted,
-          candidate: candidates[i],
+          candidate: candidate[i]?.candidate?.firstName.toString(),
+          email: candidate[i]?.candidate?.email.toString(),
         });
 
         interviewSlots.push(interviewSlot);

@@ -1,8 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Webcam from "react-webcam";
 
 const SpeechToText = ({setPerformance}) => {
+    const location = useLocation();
+
     const [isRecording, setIsRecording] = useState(false);
     const [note, setNote] = useState('');
     const [notesStore, setNotesStore] = useState([]);
@@ -109,7 +114,21 @@ const SpeechToText = ({setPerformance}) => {
             notesStore
         }).then((res)=>{
             console.log(res.data);
-           setPerformance(res.data.summary); 
+            if(res.data.marks){
+                let mark = res.data.marks.split('/')[0];
+                console.log("mark",mark);
+                mark = parseInt(mark);
+                const postId = location.pathname.split('/')[2];
+                console.log("postId",postId);
+                axios.post('/job/add-candidate-marks', {
+                    postId,
+                    token:localStorage.getItem('token'),
+                    marks:mark
+                }).then((res)=>{
+                    console.log(res.data);
+                })
+            }
+           setPerformance(res.data.analysis); 
         })
     };
 
