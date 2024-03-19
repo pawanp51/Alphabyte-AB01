@@ -11,6 +11,8 @@ import createSchedule from './routes/schedule.js'
 import candidateJob from './routes/candidateJob.js';
 import Stripe from 'stripe';
 import Profile from './routes/Profile.js';
+import sendEmails from './routes/sendEmails.js';
+import createTemplate from './routes/createTemplate.js'
 
 dotenv.config();
 const stripe = Stripe(process.env.SECRET_KEY);
@@ -69,8 +71,9 @@ app.post("/checkout", async(req, res) => {
 });
 
 app.use('/profile', Profile);
-
 app.use('/ai-interview',AIInterview);
+app.use('/send-emails', sendEmails);
+app.use('/template', createTemplate);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port : ${PORT}`);

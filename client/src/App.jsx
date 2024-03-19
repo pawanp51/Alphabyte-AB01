@@ -24,7 +24,7 @@ import Landing from "./components/CodeEditor/components/Editor-Landing";
 import Meeting from "../src/components/Meeting";
 import MyAppliedJobs from "./components/MyAppliedJobs";
 import AppliedCandidatedOnPost from "./pages/AppliedCandidatedOnPost";
-
+import TemplatePage from '../src/pages/template-page'
 axios.defaults.baseURL = "http://localhost:5000/";
 
 function App() {
@@ -104,6 +104,7 @@ function App() {
 
             <Route path="/my-applied-jobs" element={<MyAppliedJobs />} />
             <Route path="/job/applicants/:id" element={<AppliedCandidatedOnPost/>} />
+            <Route path="/templatepage" element={<TemplatePage />} />
           </Routes>
         </div>
       </div>
