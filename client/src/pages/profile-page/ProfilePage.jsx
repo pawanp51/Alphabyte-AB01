@@ -3,7 +3,7 @@ import ProfileLayout from './ProfileLayout'
 
 const ProfilePage = () => {
   return (
-    <div className='w-full'>
+    <div className="w-full">
         <ProfileLayout />
     </div>
   )
