@@ -3,6 +3,6 @@ import { FeedbackData, getFeedback } from "../controllers/Feedback.js";
 const router = express.Router();
 
 router.post("/", FeedbackData);
-router.post("/getFeedback", getFeedback);
+router.get("/getFeedback", getFeedback);
 
 export default router;

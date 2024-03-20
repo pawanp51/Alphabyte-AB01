@@ -2,6 +2,7 @@ import jobOpening from "../models/jobOpening.js";
 import noOfCandidatesModel from "../models/noOfCandidates.js";
 import Candidate from "../models/candidate.js";
 import jwt from "jsonwebtoken";
+import _ from "lodash";
 
 export const createJobOpening = async (req, res) => {
   const post = req.body;
@@ -17,13 +18,30 @@ export const createJobOpening = async (req, res) => {
   }
 };
 
+//recommended job posts
 export const getAllJobPosts = async (req, res) => {
+  const skillsString = req.query.skills;
+  const skillsArray = skillsString.trim().split(",");
+  // console.log("skills arr", skillsArray);
   try {
-    const jobPosts = await jobOpening.find({}).sort({ _id: -1 });
-    // console.log("Job Posts:", jobPosts); // Log jobPosts to verify if any documents are returned
-    res.status(200).json({ jobPosts });
+    const jobs = await jobOpening.find();
+    const results = jobs.map((job) => {
+      const jobSkillsArray = job.skillReq
+        .split(",")
+        .map((skill) => skill.trim()); // Split job skills into an array
+      const sharedTopics = _.intersection(skillsArray, jobSkillsArray); // Find shared skills
+      const similarity =
+        sharedTopics.length /
+        Math.max(skillsArray.length, jobSkillsArray.length); // Calculate similarity
+
+      return { job, similarity };
+    });
+
+    const recommended = _.orderBy(results, ["similarity"], ["desc"]);
+    // console.log("recommended", recommended);
+    res.status(200).json({ recommended });
   } catch (error) {
-    console.error("Error fetching job posts:", error); // Log any errors that occur during the database query
+    console.error("Error fetching job posts:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -79,13 +97,13 @@ export const addCandidate = async (req, res) => {
 
 export const addCandidateMarks = async (req, res) => {
   const { postId, token, marks } = req?.body;
-  if(!token){
-    return res.status(400).json({msg: 'token not found'});
+  if (!token) {
+    return res.status(400).json({ msg: "token not found" });
   }
   try {
     const userId = jwt.verify(token, process.env.JWT_SECRET).id;
-    if(!userId){
-      return res.status(400).json({msg: 'user not found'});
+    if (!userId) {
+      return res.status(400).json({ msg: "user not found" });
     }
     const updatedCandidate = await noOfCandidatesModel.findOneAndUpdate(
       { post: postId, user: userId },
@@ -99,36 +117,36 @@ export const addCandidateMarks = async (req, res) => {
       message: "Failed to add candidate marks",
     });
   }
-}
+};
 
 export const allCandidatesApplied = async (req, res) => {
   const { postId } = req.body;
-  
+
   if (!postId) {
-    return res.status(400).json({ msg: 'postId not found' });
+    return res.status(400).json({ msg: "postId not found" });
   }
-  
+
   try {
     // Find all candidate IDs who applied for the specified post
-    const candidateIds = await noOfCandidatesModel.find({ post: postId })
-    
+    const candidateIds = await noOfCandidatesModel.find({ post: postId });
+
     if (!candidateIds || candidateIds.length === 0) {
-      return res.status(400).json({ msg: 'No candidates ID found' });
+      return res.status(400).json({ msg: "No candidates ID found" });
     }
     // console.log("candidateIds", candidateIds);
     let candidatesArray = [];
-    
+
     console.log("candidateIds", candidateIds);
 
     for (let i = 0; i < candidateIds.length; i++) {
       const candidate = await Candidate.findById(candidateIds[i].user);
       const candidateWithMarks = {
         candidate,
-        marks: candidateIds[i].marks
-      }
+        marks: candidateIds[i].marks,
+      };
       candidatesArray.push(candidateWithMarks);
     }
-    
+
     // Return candidate data along with marks
     res.status(200).json(candidatesArray);
   } catch (error) {
