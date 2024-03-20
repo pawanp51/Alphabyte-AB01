@@ -83,3 +83,20 @@ export const getTemplates = async (req, res) => {
         .status(200)
         .json({ templates: reqTemplates });
 };
+
+export const getRoleTemplates = async(req, res) => {
+    const {token, role} = req.body;
+
+    if (!token || !role) {
+        return res
+            .status(400)
+            .json({ message: "Token and role both are required" });
+    }
+
+    const recruiterId = jwt.verify(token, process.env.JWT_SECRET).id;
+    const roleTemplate = await Template.find({ recruiterId, role });
+    console.log(roleTemplate.questions)
+    return res
+        .status(200)
+        .json({ roleTemplate , recruiterId});
+}
