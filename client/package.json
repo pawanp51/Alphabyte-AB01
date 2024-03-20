@@ -21,6 +21,7 @@
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "face-api.js": "^0.22.2",
     "firebase": "^10.9.0",
     "framer-motion": "^11.0.14",
     "lucide-react": "^0.358.0",

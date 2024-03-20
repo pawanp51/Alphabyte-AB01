@@ -56,7 +56,7 @@ const Resume = ({ profile }) => {
         </Button>
       ) : (
         <Dialog>
-          <DialogTrigger>
+          <DialogTrigger className="w-full">
             <Button className="bg-[#2d2f40] hover:bg-[#2d2f40]/80  flex gap-2 w-full mt-8">
               <Plus size={16} />
               Add resume
