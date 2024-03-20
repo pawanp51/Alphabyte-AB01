@@ -94,9 +94,10 @@ export const getRoleTemplates = async(req, res) => {
     }
 
     const recruiterId = jwt.verify(token, process.env.JWT_SECRET).id;
-    const roleTemplate = await Template.find({ recruiterId, role });
-    console.log(roleTemplate.questions)
+    const roleTemplate = await Template.findOne({ recruiterId, role });
+    const {questions} = roleTemplate;
+    console.log(questions)
     return res
         .status(200)
-        .json({ roleTemplate , recruiterId});
+        .json({ questions , recruiterId});
 }

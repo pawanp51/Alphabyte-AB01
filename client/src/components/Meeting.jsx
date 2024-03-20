@@ -38,11 +38,12 @@ const MentorCall = () => {
     setRole(e.target.value);
   }
 
-  const handleFetch = () => {
-    const response = axios.post('/template/getRoleTemplates', {
+  const handleFetch = async(e) => {
+    e.preventDefault();
+    const response = await axios.post('/template/getRoleTemplates', {
       token, role
     });
-    console.log(response.data);
+    console.log(response.data.questions);
   }
 
   return (
@@ -66,7 +67,7 @@ const MentorCall = () => {
               <Button className="tracking-wide mt-5" onClick = {handleFetch}>Search for templates</Button>
             </div>
             <div className="w-1/2 min-h-full bg-[#0f172a] text-white">
-              These are the questions
+              <div className="w-full">Template Questions</div>
             </div>
           </div>
         ) : (
