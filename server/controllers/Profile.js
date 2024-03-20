@@ -28,4 +28,19 @@ const getProfile = async (req, res) => {
   }
 };
 
+export const getOthers = async (req, res) => {
+  const { userId } = req.body;
+  if (!userId) {
+    return res.status(400).json({ msg: "All fields are required" });
+  }
+  try {
+    const candidate = await Candidate.findById(userId);
+    if (candidate) {
+      return res.json(candidate);
+    }
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+};
+
 export { getProfile };

@@ -17,6 +17,7 @@ const InterviewSlotsTable = () => {
   const [data, setData] = useState(
     JSON.parse(localStorage.getItem("interviewSlots"))
   );
+  console.log(data.response.data.length);
   console.log(data?.response?.data);
   useEffect(() => {
     // console.log(data?.response?.data);
@@ -33,20 +34,22 @@ const InterviewSlotsTable = () => {
         <TableHeader>
           <TableRow>
             <TableHead>Candidate</TableHead>
+            <TableHead>Email</TableHead>
             <TableHead>Date</TableHead>
             <TableHead>Start time</TableHead>
             <TableHead>End time</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.response?.data?.map((data) => (
-            <TableRow>
-              <TableCell>{data?.candidate}</TableCell>
-              <TableCell>{data?.date}</TableCell>
-              <TableCell>{data?.startTime}</TableCell>
-              <TableCell>{data?.endTime}</TableCell>
+        {data?.response?.data?.map((data) => (
+            <TableRow key={data.id}>
+                <TableCell>{data?.candidate}</TableCell>
+                <TableCell>{data?.email}</TableCell>
+                <TableCell>{data?.date}</TableCell>
+                <TableCell>{data?.startTime}</TableCell>
+                <TableCell>{data?.endTime}</TableCell>
             </TableRow>
-          ))}
+        ))}
         </TableBody>
       </Table>
 

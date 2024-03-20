@@ -53,7 +53,7 @@ const ViewJobPosts = () => {
         {recruiterJobs.length ? (
           recruiterJobs.map((job) => <JobPostCard key={job._id} job={job} />)
         ) : (
-          <div className="">No Jobs Posted</div>
+          <div className="text-white">No Jobs Posted</div>
         )}
       </div>
     </div>

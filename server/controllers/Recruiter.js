@@ -8,12 +8,12 @@ const updateProfile = async (req, res) => {
       lastName,
       image,
       company,
-      companyPosition,
+      currentPosi,
       about,
       contact
     } = req.body;
     console.log(req.body);
-    if (!token || !firstName || !lastName || !company || !companyPosition || !about || !contact) {
+    if (!token || !firstName || !lastName || !company || !currentPosi || !about || !contact) {
         return res.status(400).json({msg: 'All fields are required'});
     }
     try {
@@ -28,7 +28,7 @@ const updateProfile = async (req, res) => {
             recruiter.lastName = lastName;
             recruiter.profilePicture = image;
             recruiter.company = company;
-            recruiter.companyPosi = companyPosition;
+            recruiter.currentPosi = currentPosi;
             recruiter.about = about;
             recruiter.contact = contact;
             await recruiter.save();
