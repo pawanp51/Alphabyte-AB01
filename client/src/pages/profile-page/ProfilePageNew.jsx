@@ -13,7 +13,7 @@ const ProfileLayout = () => {
   useEffect(() => {
     const fetchData = async () => {
         const userId = location.pathname.split("/")[3]
-      const response = await axios.post(`/profile/getOthers/${userId}`);
+      const response = await axios.post(`/profile/getOthers/${userId} `);
       console.log(response.data);
       setProfileData(response.data);
     };
