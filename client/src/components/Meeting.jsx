@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import {useLocation, useParams} from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import Landing from './CodeEditor/components/Editor-Landing';
 import { Input } from './AceComps/Input';
@@ -8,6 +8,12 @@ import axios from 'axios';
 
 const MentorCall = () => {
   const {roomId} = useParams();
+  const location = useLocation();
+
+  const path = location.pathname.split('/')[2];
+  const getPath = () => {
+    console.log(path);
+  }
   const [role, setRole] = useState("");
   const getRole = localStorage.getItem('role');
   console.log(getRole);
@@ -57,6 +63,10 @@ const MentorCall = () => {
     console.log("joined room");
   }
 
+  useEffect(() => {
+    getPath()
+  },[])
+
   return (
     <main>
       <div className="w-full min-h-[80px] font-semibold bg-transparent text-white flex items-center p-2 item-center justify-center text-[2.50vw]">Interview Room</div>
@@ -87,24 +97,7 @@ const MentorCall = () => {
             </div>
           </div>
         ) : (
-          <>
-            <div className="flex gap-10">
-              <input type="text" placeholder='Enter user name'/>
-              <Button onClick={handleJoinRoom}>Join Room</Button>
-            </div>
-            <Landing/>
-          </>
-        )
-      }
-      {
-        getRole === 'recruiter' && (
-          <>
-            <div className="flex gap-10">
-              <input type="text" placeholder='Enter user name'/>
-              <Button onClick={handleJoinRoom}>Join Room</Button>
-            </div>
-          <Landing/>
-          </>
+          <Landing id={path}/>
         )
       }
     </main>

@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import Webcam from "react-webcam";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const SpeechToText = ({setPerformance}) => {
     const location = useLocation();
@@ -179,7 +179,9 @@ const SpeechToText = ({setPerformance}) => {
     );
 }
 
+
 const AiInterview = () => {
+
     const [performance, setPerformance] = useState('');
     const paragraphs = performance.split('\n\n');
     console.log(paragraphs);
@@ -189,7 +191,14 @@ const AiInterview = () => {
             <div>Welcome to the AiInterview</div>
                 <div className='relative'>
                 <div className="w-full flex justify-center items-center">
-                    <Webcam />
+                <div>
+                  <Webcam
+                    crossOrigin="anonymous"
+                    id="video"
+                    autoPlay
+                    muted
+                  />
+                </div>
                 </div>
                 <div>
                     <SpeechToText setPerformance={setPerformance} />

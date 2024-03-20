@@ -12,6 +12,7 @@ const ProfileLayout = () => {
   
   useEffect(() => {
     const fetchData = async () => {
+
         const userId = location.pathname.split("/")[2]
       const response = await axios.post(`/profile/getOthers`,{
         userId:userId
