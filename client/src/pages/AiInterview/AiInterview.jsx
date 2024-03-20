@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Webcam from "react-webcam";
+import {toast} from 'react-toastify';
 
 const SpeechToText = ({setPerformance}) => {
     const location = useLocation();
@@ -35,6 +36,23 @@ const SpeechToText = ({setPerformance}) => {
 
         return () => clearInterval(interval);
     }, [isRecording]);
+
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+          if (window.visibilityState === "visible") {
+            // Tab is visible
+            console.log("Visible");
+          } else {
+            // Tab is hidden
+            toast.error("Please do not switch tabs!");
+          }
+        };
+      
+        window.addEventListener("visibilitychange", handleVisibilityChange);
+      
+        return () => window.removeEventListener("visibilitychange", handleVisibilityChange);
+      }, []);
+      
 
     const handleStartRecording = () => {
         setIsRecording(true);

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import Landing from './CodeEditor/components/Editor-Landing';
@@ -13,10 +13,16 @@ const MentorCall = () => {
   console.log(getRole);
   const token = localStorage.getItem('token');
   console.log(token);
+  const [questions, setQuestions] = useState([]);
+  const [error, setError] = useState(null); // To store any errors
+  const [room, setRoom] = useState(true);
 
   const myMeeting = async(element) => {
-    const appId = 1118000397;
-    const serverSecret = "282ab140579e78a3eab87dd7e3603c2e";
+    if (error) {
+      return <div>Error loading face detection model: {error.message}</div>;
+    }
+    const appId = 1719844033;
+    const serverSecret = "d120489f74f9ae1dd4342d225abb529b";
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appId, serverSecret, roomId, Date.now().toString(), "Ryan Rego");
 
     const zc = ZegoUIKitPrebuilt.create(kitToken);
@@ -43,7 +49,12 @@ const MentorCall = () => {
     const response = await axios.post('/template/getRoleTemplates', {
       token, role
     });
-    console.log(response.data.questions);
+    console.log(response?.data?.roleTemplate?.questions)
+    setQuestions(response?.data?.roleTemplate?.questions)
+  }
+
+  const handleJoinRoom = () => {
+    console.log("joined room");
   }
 
   return (
@@ -67,11 +78,33 @@ const MentorCall = () => {
               <Button className="tracking-wide mt-5" onClick = {handleFetch}>Search for templates</Button>
             </div>
             <div className="w-1/2 min-h-full bg-[#0f172a] text-white">
-              <div className="w-full">Template Questions</div>
+              <div className="w-full p-5 font-bold text-blue-500">Template Questions</div>
+              {
+                questions && questions.map((que) => (
+                  <div className="text-white mb-3 pl-5 pr-10">{que}</div>
+                ))
+              }
             </div>
           </div>
         ) : (
+          <>
+            <div className="flex gap-10">
+              <input type="text" placeholder='Enter user name'/>
+              <Button onClick={handleJoinRoom}>Join Room</Button>
+            </div>
+            <Landing/>
+          </>
+        )
+      }
+      {
+        getRole === 'recruiter' && (
+          <>
+            <div className="flex gap-10">
+              <input type="text" placeholder='Enter user name'/>
+              <Button onClick={handleJoinRoom}>Join Room</Button>
+            </div>
           <Landing/>
+          </>
         )
       }
     </main>

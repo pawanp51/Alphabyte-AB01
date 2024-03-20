@@ -76,7 +76,7 @@ const sendEmail = (emails, recruiterName, company) => {
     let mailOptions = {
       from: "ryanrego14@gmail.com",
       to: `${emails[0]}, ${emails[1]}`,
-      subject: `Congratulations! You are moving forward to the interview round.`,
+      subject: `Congratulations! You are moving forward to the AI interview round.`,
       html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
               <p>Dear Candidate,</p>
