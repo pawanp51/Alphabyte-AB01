@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {useParams} from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import {useLocation, useParams} from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import Landing from './CodeEditor/components/Editor-Landing';
 import { Input } from './AceComps/Input';
@@ -8,6 +8,12 @@ import axios from 'axios';
 
 const MentorCall = () => {
   const {roomId} = useParams();
+  const location = useLocation();
+
+  const path = location.pathname.split('/')[2];
+  const getPath = () => {
+    console.log(path);
+  }
   const [role, setRole] = useState("");
   const getRole = localStorage.getItem('role');
   console.log(getRole);
@@ -15,8 +21,8 @@ const MentorCall = () => {
   console.log(token);
 
   const myMeeting = async(element) => {
-    const appId = 1118000397;
-    const serverSecret = "282ab140579e78a3eab87dd7e3603c2e";
+    const appId = 1719844033;
+    const serverSecret = "d120489f74f9ae1dd4342d225abb529b";
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appId, serverSecret, roomId, Date.now().toString(), "Ryan Rego");
 
     const zc = ZegoUIKitPrebuilt.create(kitToken);
@@ -46,6 +52,10 @@ const MentorCall = () => {
     console.log(response.data.questions);
   }
 
+  useEffect(() => {
+    getPath()
+  },[])
+
   return (
     <main>
       <div className="w-full min-h-[80px] font-semibold bg-transparent text-white flex items-center p-2 item-center justify-center text-[2.50vw]">Interview Room</div>
@@ -71,7 +81,7 @@ const MentorCall = () => {
             </div>
           </div>
         ) : (
-          <Landing/>
+          <Landing id={path}/>
         )
       }
     </main>

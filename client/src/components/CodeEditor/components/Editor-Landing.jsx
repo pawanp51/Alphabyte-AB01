@@ -46,7 +46,7 @@ const target = 5;
 console.log(binarySearch(arr, target));
 `;
 
-const Landing = () => {
+const Landing = ({id}) => {
   const [code, setCode] = useState(javascriptDefault);
   //const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState("");
@@ -158,6 +158,7 @@ const Landing = () => {
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
         <div className="flex flex-col w-full h-full justify-start items-end">
           <CodeEditorWindow
+            id={id}
             code={code}
             onChange={onChange}
             language={language?.value}

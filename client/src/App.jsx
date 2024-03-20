@@ -26,6 +26,7 @@ import MyAppliedJobs from "./components/MyAppliedJobs";
 import AppliedCandidatedOnPost from "./pages/AppliedCandidatedOnPost";
 import TemplatePage from '../src/pages/template-page'
 import ProfilePageNew from "./pages/profile-page/ProfilePageNew";
+import Feedback from "./components/Feedback";
 axios.defaults.baseURL = "http://localhost:5000/";
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
             <Route path="/job/applicants/:id" element={<AppliedCandidatedOnPost/>} />
             <Route path="/templatepage" element={<TemplatePage />} />
             <Route path="/profile/:id" element={<ProfilePageNew />} />
+            <Route path="/feedback" element={<Feedback/>}/>
           </Routes>
         </div>
       </div>
