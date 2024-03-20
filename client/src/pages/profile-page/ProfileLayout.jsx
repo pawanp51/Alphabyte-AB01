@@ -4,6 +4,8 @@ import About from "./About";
 import Skills from "./Skills";
 import Education from "./Education";
 import axios from "axios";
+import Projects from "./Projects";
+import Resume from "./Resume";
 
 const ProfileLayout = () => {
   const [profileData, setProfileData] = useState({});
@@ -13,11 +15,13 @@ const ProfileLayout = () => {
       const response = await axios.post("/profile", {
         token: localStorage.getItem("token"),
       });
-      console.log(response.data);
+      console.log("profile data", response);
       setProfileData(response.data);
     };
     fetchData();
   }, []);
+
+  console.log(profileData);
 
   return (
     <div className="p-10">
@@ -25,10 +29,12 @@ const ProfileLayout = () => {
         <div className="w-1/2 gap-4 flex flex-wrap flex-col">
           <ProfileHead profile={profileData} />
           <Education profile={profileData} />
+          <Projects profile={profileData} />
         </div>
         <div className="w-1/2 gap-4 flex flex-col">
           <About profile={profileData} />
           <Skills profile={profileData} />
+          <Resume profile={profileData} />
         </div>{" "}
       </div>
     </div>
