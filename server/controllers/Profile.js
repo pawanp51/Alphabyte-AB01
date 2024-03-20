@@ -30,4 +30,25 @@ const getProfile = async (req, res) => {
   }
 };
 
+getOthers = async (req, res) => {
+  const { id } = req.body;
+  if (!id) {
+    return res.status(400).json({ msg: "All fields are required" });
+  }
+  try {
+    const candidate = await Candidate.findById(id);
+    if (candidate) {
+      return res.json(candidate);
+    }
+    const recruiter = await Recruiter.findById(id);
+    if (recruiter) {
+      return res.json(recruiter);
+    } else {
+      return res.status(400).json({ msg: "user not found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+}
+
 export { getProfile };
