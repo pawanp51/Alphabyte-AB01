@@ -64,7 +64,9 @@ const AppliedCandidatedOnPost = () => {
                         >Take Interview</button>
                     </TableCell>
                     <TableCell>
-                        <button className="bg-blue-500  text-slate-200 p-2 rounded-md">View Profile</button>
+                        <button className="bg-blue-500  text-slate-200 p-2 rounded-md"
+                            onClick={()=>navigate(`/profile/${candidate?.candidate?._id}`)}
+                        >View Profile</button>
                     </TableCell>
                 </TableRow>
                 )

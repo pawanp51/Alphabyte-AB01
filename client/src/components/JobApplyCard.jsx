@@ -3,6 +3,7 @@ import { Users } from "lucide-react";
 import React, { useState } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 //we will have the post props
 const ExploreAllJobs = ({ job }) => {
@@ -28,6 +29,12 @@ const ExploreAllJobs = ({ job }) => {
       jobDesc,
       role,
     });
+    if(response.status === 201){
+      toast.success("Applied successfully");
+    }
+    else{
+      toast.error("Failed to apply");
+    }
     console.log(response);
   };
 
