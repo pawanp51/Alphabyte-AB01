@@ -34,10 +34,12 @@ export const createSlots = async (req, res) => {
     // Iterate through each day between start date and end date
     while (currentDate <= lastDate) {
       // Set the start and end time for the current day
+      console.log("h1")
       const currentStartTime = new Date(currentDate);
       const currentEndTime = new Date(currentDate);
       currentStartTime.setHours(startTime);
       currentEndTime.setHours(endTime);
+      console.log("h2")
 
       const totalAvailableTime =
         (currentEndTime - currentStartTime) / 1000 / 60;
@@ -45,8 +47,9 @@ export const createSlots = async (req, res) => {
       const totalInterviewsTime = candidates.length * totalInterviewTime;
 
       const timeInterval = totalInterviewTime;
+      console.log("h3")
 
-      // Create interview slots for each candidate
+        // Create interview slots for each candidate
       let currentSlotStart = currentStartTime;
       for (let i = 0; i < candidates.length; i++) {
         // Check if the current slot exceeds the end time for the day
@@ -54,6 +57,7 @@ export const createSlots = async (req, res) => {
           // No more slots can be scheduled for the day
           break;
         }
+      console.log("h1")
 
         const dateFormatted = currentSlotStart.toLocaleDateString("en-US", {
           weekday: "short",
@@ -70,6 +74,7 @@ export const createSlots = async (req, res) => {
             minute: "2-digit",
           }
         );
+      console.log("h1")
 
         let endTimeForCandidate = new Date(
           currentSlotStart.getTime() + interval * 60 * 1000
@@ -89,6 +94,7 @@ export const createSlots = async (req, res) => {
             minute: "2-digit",
           }
         );
+      console.log("h1")
 
         // Create and save the interview slot
         const interviewSlot = new InterviewSlot({
@@ -98,6 +104,7 @@ export const createSlots = async (req, res) => {
           candidate: candidate[i]?.candidate?.firstName.toString(),
           email: candidate[i]?.candidate?.email.toString(),
         });
+        console.log('interview',interviewSlot)
 
         interviewSlots.push(interviewSlot);
 
@@ -113,6 +120,7 @@ export const createSlots = async (req, res) => {
 
     // Save all interview slots in bulk
     await InterviewSlot.insertMany(interviewSlots);
+    console.log(interviewSlots)
 
     res.status(200).json(interviewSlots); // Changed status to 200 for success
   } catch (error) {

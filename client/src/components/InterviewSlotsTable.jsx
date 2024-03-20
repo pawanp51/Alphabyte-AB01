@@ -41,7 +41,7 @@ const InterviewSlotsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-        {data?.response?.data?.slice(0, data.response.data.length / 2).map((data) => (
+        {data?.response?.data?.map((data) => (
             <TableRow key={data.id}>
                 <TableCell>{data?.candidate}</TableCell>
                 <TableCell>{data?.email}</TableCell>
