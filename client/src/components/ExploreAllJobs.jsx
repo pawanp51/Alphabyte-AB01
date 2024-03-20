@@ -48,15 +48,30 @@ const ExploreAllJobs = () => {
   }, [location]);
 
   return (
-    <div className="text-slate-200">
+    <div className="text-slate-200 w-full">
       {" "}
       <div className="p-10 ">
         <div className="flex items-center justify-between mb-10 text-slate-200">
           <h1 className="text-3xl tracking-wide font-medium">Explore Jobs</h1>
         </div>
         <div className="flex gap-6 mt-8">
-          <Button onClick={() => setShowAll(true)}>All</Button>
-          <Button onClick={() => setShowAll(false)}> Recommended</Button>
+          <Button
+            className={`font-semibold hover:bg-white hover:text-slate-800 ${
+              showAll && "bg-white text-slate-800"
+            }`}
+            onClick={() => setShowAll(true)}
+          >
+            All
+          </Button>
+          <Button
+            className={`font-semibold hover:bg-white hover:text-slate-800 ${
+              !showAll && "bg-white text-slate-800"
+            }`}
+            onClick={() => setShowAll(false)}
+          >
+            {" "}
+            Recommended
+          </Button>
         </div>
         {showAll ? (
           <div className="mt-8 grid grid-cols-2 gap-10 justify-center item-center">

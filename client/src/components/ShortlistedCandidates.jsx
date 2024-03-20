@@ -10,8 +10,8 @@ import {
 } from "./ui/table";
 import { useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const ShortlistedCandidates = () => {
   const location = useLocation();
@@ -19,26 +19,25 @@ const ShortlistedCandidates = () => {
   const [data, setData] = useState(
     JSON.parse(localStorage.getItem("shortlist"))
   );
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("shortlist")));
   }, [location]);
 
-  const sendEmails = async() => {
-    const emails = data?.excelData.map((excel) => excel?.email)
+  const sendEmails = async () => {
+    const emails = data?.excelData.map((excel) => excel?.email);
     console.log(emails);
-    const response = await axios.post('/send-emails', {emails, token});
+    const response = await axios.post("/send-emails", { emails, token });
     console.log(response.data);
-    if(response.data.status === 200)
-    {
+    if (response.data.status === 200) {
       toast.success(response.data.msg);
     } else {
       toast.error(response.data.msg);
     }
-  }
+  };
   return (
-    <div className="text-slate-200 p-5">
+    <div className="text-slate-200 w-full p-5">
       <h1 className="text-3xl tracking-wide font-bold mb-10">
         Shortlisted Candidates
       </h1>
@@ -69,7 +68,12 @@ const ShortlistedCandidates = () => {
         </TableBody>
       </Table>
 
-      <Button className="bg-green-600 text-white w-[28vh] h-[5vh] mt-7 tracking-wider" onClick={sendEmails}>Send Confirmation Emails</Button>
+      <Button
+        className="bg-emerald-500 hover:bg-emerald-600 text-white mt-7 tracking-wider"
+        onClick={sendEmails}
+      >
+        Send Confirmation Emails
+      </Button>
     </div>
   );
 };
