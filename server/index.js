@@ -14,7 +14,7 @@ import Profile from './routes/Profile.js';
 import sendEmails from './routes/sendEmails.js';
 import createTemplate from './routes/createTemplate.js'
 import Feedback from './routes/Feedback.js'
-
+import Code from './routes/code.js'
 dotenv.config();
 const stripe = Stripe(process.env.SECRET_KEY);
 
@@ -76,6 +76,7 @@ app.use('/ai-interview',AIInterview);
 app.use('/send-emails', sendEmails);
 app.use('/template', createTemplate);
 app.use('/feedback',Feedback)
+app.use('/code-editor',Code)
 
 app.listen(PORT, () => {
     console.log(`Server listening on port : ${PORT}`);

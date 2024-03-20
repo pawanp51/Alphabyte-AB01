@@ -1,53 +1,96 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import { Input } from "./AceComps/Input";
+import { Label } from "./AceComps/Label";
+import { Button } from "./ui/button";
+import clsx from "clsx"; // Import the entire clsx module
+import { twMerge } from "tailwind-merge";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+export function cn(...inputs) {
+  return twMerge(clsx(...inputs));
+}
 
 const Feedback = () => {
-  return (
-    <div className="text-slate-200 w-full">
-      {" "}
-      <div className="p-10 ">
-        <div className="flex items-center justify-between mb-10 text-slate-200">
-          <h1 className="text-3xl tracking-wide font-medium">Feedback</h1>
-        </div>
+  const navigate = useNavigate();
 
-        <div className="grid grid-cols-2 gap-5">
-          <div className="p-4 bg-[#191b2e] text-slate-100 rounded-xl">
-            <p className="font-medium text-xl">1.</p>
-            <div className="p-4 rounded-xl bg-[#2d2f40]">
-              <p className="text-justify">
-                More than I expected I was chilling at home when I suddenly got
-                the message “results are out”, so naturally I checked it out. I
-                was shivering (I don’t know why, because board results don’t
-                even matter for medical), and eventually pressed enter and found
-                this
-              </p>
-            </div>
-          </div>
-          {/* <div className="p-4 bg-[#191b2e] text-slate-100 rounded-xl">
-            <p className="font-medium text-xl">2.</p>
-            <div className="p-4 rounded-xl bg-[#2d2f40]">
-              <p className="text-justify">
-                More than I expected I was chilling at home when I suddenly got
-                the message “results are out”, so naturally I checked it out. I
-                was shivering (I don’t know why, because board results don’t
-                even matter for medical), and eventually pressed enter and found
-                this
-              </p>
-            </div>
-          </div>
-          <div className="p-4 bg-[#191b2e] text-slate-100 rounded-xl">
-            <p className="font-medium text-xl">3.</p>
-            <div className="p-4 rounded-xl bg-[#2d2f40]">
-              <p className="text-justify">
-                More than I expected I was chilling at home when I suddenly got
-                the message “results are out”, so naturally I checked it out. I
-                was shivering (I don’t know why, because board results don’t
-                even matter for medical), and eventually pressed enter and found
-                this
-              </p>
-            </div>
-          </div> */}
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .post(`/feedback/`, {
+        userId: "sjdahdb23812938120938wj",
+        name,
+        email,
+        message,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return (
+    <div>
+      <h1 className="text-3xl font-bold text-center text-white">
+        Feedback Form About Candidate
+      </h1>
+      <form
+        className="flex flex-col gap-6 bg-gray-900 rounded-md p-8 mt-8"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex gap-6 justify-between">
+          <LabelInputContainer className="w-1/2 flex flex-col ">
+            <Label className="font-medium text-base">Name</Label>
+            <Input
+              name="companyName"
+              onChange={(e) => setName(e.target.value)}
+              placeholder="XYZ"
+            />
+          </LabelInputContainer>
+          <LabelInputContainer className="w-1/2 flex flex-col ">
+            <Label className="font-medium text-base">Email</Label>
+            <Input
+              name="location"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="India"
+            />
+          </LabelInputContainer>
         </div>
-      </div>
+        <LabelInputContainer className="flex flex-col">
+          <Label className="font-medium text-base">Candidate Feedback</Label>
+          <textarea
+            className="h-32 text-white bg-[#27272a] p-4 justify-start items-start"
+            name="jobDesc"
+            placeholder="The candidate should need to focus more on DSA and try to get core knowledge too"
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </LabelInputContainer>
+
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            className="px-4 h-9 font-medium bg-indigo-500 hover:bg-indigo-600 hover:scale-105 mt-4"
+          >
+            Create Job Opening
+          </Button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+const LabelInputContainer = ({ children, className }) => {
+  return (
+    <div className={cn("flex flex-col space-y-2 w-full", className)}>
+      {children}
     </div>
   );
 };
