@@ -40,17 +40,20 @@ const JobOpeningCard = ({ job }) => {
   const [endTime, setEndTime] = useState("12:00");
   const [interval, setInterval] = useState("");
   const [breakDuration, setBreakDuration] = useState("");
-  const [appliedCandidates, setAppliedCandidates] = useState([])
+  const [appliedCandidates, setAppliedCandidates] = useState([]);
 
   const fetchData = async (postId) => {
-    console.log(postId)
-    axios.post('/job/allCandidatesApplied', {postId}).then((res)=>{
-        console.log("candidates that matters",res.data)
-        setAppliedCandidates(res.data)
-    }).catch((err)=>{
-        console.log(err)
-    })
-  }
+    console.log(postId);
+    axios
+      .post("/job/allCandidatesApplied", { postId })
+      .then((res) => {
+        console.log("candidates that matters", res.data);
+        setAppliedCandidates(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleStartTimeChange = (newTime) => {
     setStartTime(newTime);
@@ -94,7 +97,7 @@ const JobOpeningCard = ({ job }) => {
       endTime: endTime,
       interval: interval,
       breakDuration: breakDuration,
-      candidate:appliedCandidates,
+      candidate: appliedCandidates,
       // Add other properties as needed
     };
 
@@ -110,7 +113,7 @@ const JobOpeningCard = ({ job }) => {
 
   const postApplicants = async (jobId) => {
     navigate(`/job/applicants/${jobId}`);
-  }
+  };
 
   return (
     <div className="transition-all p-6 bg-[#191b2e] border border-[#2d2f40] text-slate-300 rounded-xl">
@@ -176,15 +179,19 @@ const JobOpeningCard = ({ job }) => {
           </div>
         </div>
         <div className="flex justify-between items-center mt-4">
-          <div className="flex border border-blue-500 mr-1 hover:bg-blue-500 hover:text-white hover:cursor-pointer gap-2 tracking-wide font-medium p-2 text-sm rounded-xl rounded-bl-none text-emerald-300/80 text-slate-100"
-            onClick={()=>postApplicants(job?._id)}
+          <div
+            className="flex border border-blue-500 mr-1 hover:bg-blue-500 hover:text-white hover:cursor-pointer gap-2 tracking-wide font-medium p-2 text-sm rounded-xl rounded-bl-none text-emerald-300/80 text-slate-100"
+            onClick={() => postApplicants(job?._id)}
           >
             <Users size={20} /> {job?.noOfCandidates?.length || 0} Applicants
           </div>
 
           <Dialog>
             <DialogTrigger>
-              <div onClick={()=>fetchData(job?._id)} className="p-2 flex gap-2 font-medium tracking-wide text-sm text-sky-600 border border-sky-600 hover:bg-sky-800/10 rounded-xl rounded-br-none">
+              <div
+                onClick={() => fetchData(job?._id)}
+                className="p-2 flex gap-2 font-medium tracking-wide text-slate-100 text-sm border border-sky-600 hover:bg-blue-500 hover:text-white hover:cursor-pointer rounded-xl rounded-br-none"
+              >
                 <Timer size={20} />
                 Schedule Interview
               </div>

@@ -24,8 +24,9 @@ import Landing from "./components/CodeEditor/components/Editor-Landing";
 import Meeting from "../src/components/Meeting";
 import MyAppliedJobs from "./components/MyAppliedJobs";
 import AppliedCandidatedOnPost from "./pages/AppliedCandidatedOnPost";
-import TemplatePage from '../src/pages/template-page'
+import TemplatePage from "../src/pages/template-page";
 import ProfilePageNew from "./pages/profile-page/ProfilePageNew";
+import Feedback from "./components/Feedback";
 import Feedback from "./components/Feedback";
 axios.defaults.baseURL = "http://localhost:5000/";
 
@@ -105,10 +106,13 @@ function App() {
             <Route path="/profile-page" element={<ProfilePage />} />
 
             <Route path="/my-applied-jobs" element={<MyAppliedJobs />} />
-            <Route path="/job/applicants/:id" element={<AppliedCandidatedOnPost/>} />
+            <Route
+              path="/job/applicants/:id"
+              element={<AppliedCandidatedOnPost />}
+            />
             <Route path="/templatepage" element={<TemplatePage />} />
             <Route path="/profile/:id" element={<ProfilePageNew />} />
-            <Route path="/feedback" element={<Feedback/>}/>
+            <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </div>
       </div>

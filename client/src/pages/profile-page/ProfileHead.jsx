@@ -25,7 +25,7 @@ const ProfileHead = ({ profile }) => {
         <p className="mt-12 text-xl font-semibold">
           {profile.firstName + " " + profile.lastName || "Mark Zukerberg"}
         </p>
-        <p>{"SDE at " + profile?.company || "Google"}</p>
+        <p>{"SDE at Google"}</p>
         <div className="flex gap-4 mt-4">
           <Button className=" border border-gray-50 hover:bg-gray-100 hover:text-slate-800 text-slate-50">
             Change photo

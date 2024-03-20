@@ -25,7 +25,7 @@ const InterviewSlotsTable = () => {
   }, [location]);
 
   return (
-    <div className="text-slate-200 p-5">
+    <div className="w-full text-slate-200 p-5">
       <h1 className="text-3xl tracking-wider font-bold mb-10">
         Shortlisted Candidates
       </h1>
@@ -41,15 +41,15 @@ const InterviewSlotsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-        {data?.response?.data?.map((data) => (
+          {data?.response?.data?.map((data) => (
             <TableRow key={data.id}>
-                <TableCell>{data?.candidate}</TableCell>
-                <TableCell>{data?.email}</TableCell>
-                <TableCell>{data?.date}</TableCell>
-                <TableCell>{data?.startTime}</TableCell>
-                <TableCell>{data?.endTime}</TableCell>
+              <TableCell>{data?.candidate}</TableCell>
+              <TableCell>{data?.email}</TableCell>
+              <TableCell>{data?.date}</TableCell>
+              <TableCell>{data?.startTime}</TableCell>
+              <TableCell>{data?.endTime}</TableCell>
             </TableRow>
-        ))}
+          ))}
         </TableBody>
       </Table>
 

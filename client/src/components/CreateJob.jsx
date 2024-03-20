@@ -8,6 +8,7 @@ import { Label } from "../components/AceComps/Label";
 import { Input } from "../components/AceComps/Input";
 import clsx from "clsx"; // Import the entire clsx module
 import { twMerge } from "tailwind-merge";
+import { Edit } from "lucide-react";
 
 export function cn(...inputs) {
   return twMerge(clsx(...inputs));
@@ -53,15 +54,18 @@ const JobOpeningForm = () => {
     navigate("/viewJobPosts");
   };
   return (
-    <div className="w-4/5 p-10 flex flex-col text-slate-200 justify-center items-center">
+    <div className="w-full p-10 flex flex-col text-slate-200 justify-center items-center">
       <div
         className="w-full text-slate-100 rounded-xl p-4   bg-[#191b2e]
 
 "
       >
-        <h1 className="text-2xl text-slate-200 tracking-wide font-medium mb-8">
-          Create Job Opening
-        </h1>
+        <div className="flex gap-4 items-center  mb-8">
+          <Edit size={28} />
+          <h1 className="text-2xl text-slate-200 tracking-wide font-medium">
+            Create Job Opening
+          </h1>
+        </div>
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           <div className="flex gap-6 justify-between">
             <LabelInputContainer className="w-1/2 flex flex-col ">

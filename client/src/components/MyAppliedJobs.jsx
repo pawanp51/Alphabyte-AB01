@@ -1,5 +1,5 @@
 import axios from "axios";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
@@ -33,7 +33,7 @@ const MyAppliedJobs = () => {
   }, [location]);
 
   return (
-    <div className="text-slate-50 p-10">
+    <div className="w-full text-slate-50 p-10">
       <h1 className="text-3xl tracking-wide font-bold mb-10">
         My applied jobs
       </h1>
