@@ -183,7 +183,7 @@ const Sidebar = () => {
 
                 <Link
                   className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-                  to={"/ai-interview"}
+                  to={"/ai-interview/12345"}
                 >
                   <Bot />
 
@@ -211,13 +211,13 @@ const Sidebar = () => {
                     </span>
                   </Link>
                 ) : (
-                  <a
+                  <Link
                     className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-                    href="#"
+                    to={"/meeting/12345"}
                   >
                     <Video />
                     <span className="mx-2 font-medium">Personal Interview</span>
-                  </a>
+                  </Link>
                 )}
               </div>
               <div className="space-y-3 ">

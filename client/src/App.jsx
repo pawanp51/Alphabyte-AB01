@@ -27,7 +27,7 @@ import AppliedCandidatedOnPost from "./pages/AppliedCandidatedOnPost";
 import TemplatePage from "../src/pages/template-page";
 import ProfilePageNew from "./pages/profile-page/ProfilePageNew";
 import Feedback from "./components/Feedback";
-axios.defaults.baseURL = "http://localhost:5000/";
+axios.defaults.baseURL = "https://hiretainity.onrender.com/";
 
 function App() {
   const location = useLocation();
