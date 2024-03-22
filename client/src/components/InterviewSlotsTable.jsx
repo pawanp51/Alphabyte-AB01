@@ -41,19 +41,23 @@ const InterviewSlotsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.response?.data?.map((data) => (
+        {data?.response?.data?.map((data) => (
             <TableRow key={data.id}>
-              <TableCell>{data?.candidate}</TableCell>
-              <TableCell>{data?.email}</TableCell>
-              <TableCell>{data?.date}</TableCell>
-              <TableCell>{data?.startTime}</TableCell>
-              <TableCell>{data?.endTime}</TableCell>
+                <TableCell>{data?.candidate}</TableCell>
+                <TableCell>{data?.email}</TableCell>
+                <TableCell>{data?.date}</TableCell>
+                <TableCell>{data?.startTime}</TableCell>
+                <TableCell>{data?.endTime}</TableCell>
             </TableRow>
-          ))}
+        ))}
         </TableBody>
       </Table>
 
-      <Button className="mt-6 tracking-wider bg-green-700">
+      <Button className="mt-6 tracking-wider bg-green-700"
+        onClick={() => {
+          console.log("Sending confirmation email");
+        }}
+      >
         Send Confirmation Email
       </Button>
     </div>
